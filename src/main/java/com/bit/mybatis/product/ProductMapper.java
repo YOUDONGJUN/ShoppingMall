@@ -3,8 +3,8 @@ package com.bit.mybatis.product;
 import com.bit.cart.dto.CartDTO;
 import com.bit.product.dto.ProductDTO;
 import com.bit.productPost.dto.ProductPostDTO;
-import com.bit.qna.dto.QnaADTO;
-import com.bit.qna.dto.QnaQDTO;
+import com.bit.qna.dto.QnaAnswerDTO;
+import com.bit.qna.dto.QnaQuestionDTO;
 import com.bit.review.dto.ReviewDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -46,11 +46,11 @@ public interface ProductMapper {
 
     public void updateRecommendCounts(@Param("p") String productId); // 추천 기능
 
-    public ArrayList<QnaQDTO> selectAllQnaQList(@Param("p") String postId); // 문의 리스트 출력
+    public ArrayList<QnaQuestionDTO> selectAllQnaQList(@Param("p") String postId); // 문의 리스트 출력
 
-    public QnaADTO selectQnaAList(@Param("q") String questionId); // 답변 가져오기
+    public QnaAnswerDTO selectQnaAnswerList(@Param("q") String questionId); // 답변 가져오기
 
-    public void insertQnaQ(QnaQDTO dto); // 문의하기
+    public void insertQnaQuestion(com.bit.dto.QnaQuestionDTO qnaQuestionDTO); // 문의하기
 
     public ArrayList<ProductDTO> selectRelativeProduct(@Param("p") String productId, @Param("k") String kat, @Param("s") int start, @Param("e") int end); // 관련 상품 가져오기
 

@@ -27,15 +27,15 @@ import java.util.Calendar;
 public class MemberController implements MemberSessionName {
 
     @Autowired
-    MemberService ms;
+    MemberService memberService;
     @Autowired
-    OrderService os;
+    OrderService orderService;
     @Autowired
-    WishService ws;
+    WishService wishService;
     @Autowired
-    MileageService mls;
+    MileageService mileageService;
     @Autowired
-    ReviewService rs;
+    ReviewService reviewService;
 
     @Autowired
 //    private JavaMailSender mailSender;
@@ -57,7 +57,7 @@ public class MemberController implements MemberSessionName {
                              HttpSession session,
                              HttpServletResponse response) {
 
-        int result = ms.user_check(request, model, session);
+        int result = memberService.user_check(request, model, session);
         if (result == 0) {
             rs.addAttribute("id", request.getParameter("memberId"));
             rs.addAttribute("autoLogin", request.getParameter("autoLogin"));
@@ -89,7 +89,7 @@ public class MemberController implements MemberSessionName {
             cal.add(Calendar.MONTH, 3);
 
             Date limitDate = new Date(cal.getTimeInMillis());
-            ms.keepLogin(session.getId(), limitDate, id);
+            memberService.keepLogin(session.getId(), limitDate, id);
         }
         return "member/successLogin";
     }
@@ -101,7 +101,7 @@ public class MemberController implements MemberSessionName {
             if (loginCookie != null) {
                 loginCookie.setMaxAge(0);
                 response.addCookie(loginCookie);
-                ms.keepLogin("nan", new Date(System.currentTimeMillis()),
+                memberService.keepLogin("nan", new Date(System.currentTimeMillis()),
                         (String) session.getAttribute(LOGIN));
             }
             session.invalidate();
@@ -111,20 +111,20 @@ public class MemberController implements MemberSessionName {
 
     @GetMapping("memberInfo")
     public String memberInfo(Model model) {
-        ms.memberInfo(model);
+        memberService.memberInfo(model);
         return "member/memberInfo";
     }
 
     @GetMapping("info")
     public String info(@RequestParam("memberId") String userId, Model model) {
-        ms.info(userId, model);
+        memberService.info(userId, model);
         return "member/info";
     }
 
     /*로그인 한 회원정보*/
     @GetMapping("/profile")
     public String profile(Model model, HttpSession session) {
-        ms.profile(model, (String) session.getAttribute(LOGIN));
+        memberService.profile(model, (String) session.getAttribute(LOGIN));
         return "member/profile";
     }
 
@@ -132,14 +132,14 @@ public class MemberController implements MemberSessionName {
     @PostMapping("modify")
     public String modify(HttpServletResponse response,
                          HttpServletRequest request) throws Exception {
-        ms.modify(request);
+        memberService.modify(request);
         return "redirect:/member/profile";
     }
 
     /*회원 탈퇴*/
     @GetMapping("delete")
     public String delete(HttpSession session) {
-        ms.delete((String) session.getAttribute(LOGIN));
+        memberService.delete((String) session.getAttribute(LOGIN));
         return "redirect:/member/logout";
     }
 
@@ -155,8 +155,8 @@ public class MemberController implements MemberSessionName {
     }
 
     @PostMapping("register")
-    public String register(MemberDTO dto) {
-        int result = ms.register(dto);
+    public String register(MemberDTO memberDTO) {
+        int result = memberService.register(memberDTO);
         if (result == 1) {
             return "redirect:login";
         }
@@ -167,38 +167,38 @@ public class MemberController implements MemberSessionName {
 //	myPage
 
     @GetMapping("readOrders")
-    public String readOrders(MemberDTO dto,
+    public String readOrders(MemberDTO memberDTO,
                              HttpServletRequest request,
                              Model model,
                              HttpSession session) {
-        os.getUserOrdersDeliveryStates(request, model, session);
-        os.getUserOrders(model, session);
+        orderService.getUserOrdersDeliveryStates(request, model, session);
+        orderService.getUserOrders(model, session);
 
         return "eunbin/readOrders";
     }
 
     @GetMapping("readWishes")
-    public String readWishes(MemberDTO dto,
+    public String readWishes(MemberDTO memberDTO,
                              HttpServletRequest request,
                              Model model,
                              HttpSession session) {
-        ws.getUserWishes(model, session);
+        wishService.getUserWishes(model, session);
         return "eunbin/readWishes";
     }
 
     @GetMapping("readMileage")
-    public String readMileage(MemberDTO dto,
+    public String readMileage(MemberDTO memberDTO,
                               HttpServletRequest request,
                               Model model,
                               HttpSession session) {
-        mls.getUserMileages(model, session);
-        mls.getUserTotalMileage(model, session);
-        mls.getUserMileageStateList(request, model, session);
+        mileageService.getUserMileages(model, session);
+        mileageService.getUserTotalMileage(model, session);
+        mileageService.getUserMileageStateList(request, model, session);
         return "eunbin/readMileage";
     }
 
     @GetMapping("/createReview")
-    public String createReview(MemberDTO dto,
+    public String createReview(MemberDTO memberDTO,
                                MultipartHttpServletRequest mul,
                                HttpServletRequest request,
                                HttpServletResponse response,
@@ -214,12 +214,12 @@ public class MemberController implements MemberSessionName {
     }
 
     @PostMapping("saveReview")
-    public void saveReview(MemberDTO dto,
+    public void saveReview(MemberDTO memberDTO,
                            MultipartHttpServletRequest mul,
                            HttpServletRequest request,
                            HttpServletResponse response) throws Exception {
 
-        String message = rs.reviewSave(mul, request, "test");
+        String message = reviewService.reviewSave(mul, request, "test");
         response.setContentType("text/html; charset=utf-8");
         PrintWriter out = response.getWriter();
         out.print(message);
@@ -235,7 +235,7 @@ public class MemberController implements MemberSessionName {
     //아이디찾기
     @RequestMapping("/find_id.do")
     public String find_id(HttpServletResponse response, @RequestParam(value = "memberEmail", required = false) String email, Model md) throws Exception {
-        md.addAttribute("id", ms.find_id(response, email));
+        md.addAttribute("id", memberService.find_id(response, email));
         return "member/find_id";
     }
 
@@ -248,14 +248,14 @@ public class MemberController implements MemberSessionName {
     //비번 찾기
     @RequestMapping("/find_pw.do")
     public String find_pw(HttpServletResponse response, @RequestParam(value = "memberId", required = false) String id, Model md) throws Exception {
-        md.addAttribute("pw", ms.find_pw(response, id));
+        md.addAttribute("pw", memberService.find_pw(response, id));
         return "member/find_pw";
     }
 
-    @RequestMapping("/memberIdChk")
+    @RequestMapping("/memberIdCheck")
     @ResponseBody
-    public String memberIdChkPOST(String memberId) {
-        int result = ms.idCheck(memberId);
+    public String memberIdCheckPOST(String memberId) {
+        int result = memberService.idCheck(memberId);
         if (result != 0) {
             return "fail";
         } else {

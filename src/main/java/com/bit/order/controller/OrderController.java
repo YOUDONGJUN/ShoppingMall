@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("order")
 public class OrderController {
-	
-	@GetMapping("/readOrders")
-	public String readOrders() {
-		return "eunbin/readOrders";
-	}
-	
+
+    @GetMapping("/readOrders")
+    public String readOrders() {
+        return "eunbin/readOrders";
+    }
+
 }

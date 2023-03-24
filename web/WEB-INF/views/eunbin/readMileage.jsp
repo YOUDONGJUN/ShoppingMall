@@ -148,7 +148,7 @@
             <ul>
                 <li>
                     <div class="menu-nav">
-                        <a class="nav-link" href="${contextPath }/mypage/readOrders">
+                        <a class="nav-link" href="${contextPath }/myPage/readOrders">
                             <div class="p">
                                 <div class="p-2">
                                     <b>Order</b>
@@ -172,7 +172,7 @@
                 </li>
                 <li>
                     <div class="menu-nav">
-                        <a class="nav-link" href="${contextPath }/mypage/readWishes">
+                        <a class="nav-link" href="${contextPath }/myPage/readWishes">
                             <div class="p">
                                 <div class="p-2">
                                     <b>Wishlist</b>
@@ -184,7 +184,7 @@
                 </li>
                 <li>
                     <div class="menu-nav">
-                        <a class="nav-link" href="${contextPath }/mypage/readMileage">
+                        <a class="nav-link" href="${contextPath }/myPage/readMileage">
                             <div class="p">
                                 <div class="p-2">
                                     <b>Mileage</b>
@@ -234,10 +234,10 @@
                 <hr style="border-style: dashed ;">
                 <div class=" p-2" style="text-align: left;">
                     <button type="button" class="btn btn-outline-secondary" style="width: 200px; margin-left: 18px;"
-                            onclick="location.href='${contextPath }/mypage/readMileage'">적립내역 보기
+                            onclick="location.href='${contextPath }/myPage/readMileage'">적립내역 보기
                     </button>
                     <button type="button" class="btn btn-outline-secondary" style="width: 200px;"
-                            onclick="location.href='${contextPath }/mypage/readUnusedMileage'">미가용 적립내역 보기
+                            onclick="location.href='${contextPath }/myPage/readUnusedMileage'">미가용 적립내역 보기
                     </button>
                 </div>
                 <div class="p-2  height500px overflowY" style="height: 100%; margin: 17px;">

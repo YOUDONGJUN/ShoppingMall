@@ -23,13 +23,13 @@ import java.io.PrintWriter;
 @RequestMapping("notice")
 public class NoticeController {
     @Autowired
-    NoticeService ns;
+    NoticeService noticeService;
 
     @GetMapping("noticeAllList") //공지사항 전체 리스트 / 페이징
     public String noticeAllList(Model model,
                                 @RequestParam(value = "num", required = false, defaultValue = "1") int num) {
         System.out.println("num : " + num);
-        ns.selectAllNoticeList(model, num);
+        noticeService.selectAllNoticeList(model, num);
         return "notice/noticeAllList";
     }
 
@@ -42,7 +42,7 @@ public class NoticeController {
     public void writeSave(MultipartHttpServletRequest mul,
                           HttpServletRequest request,
                           HttpServletResponse response) throws Exception {
-        String message = ns.writeSave(mul, request);
+        String message = noticeService.writeSave(mul, request);
         response.setContentType("text/html; charset=utf-8");
         PrintWriter out = response.getWriter();
         out.print(message);
@@ -50,7 +50,7 @@ public class NoticeController {
 
     @GetMapping("contentView")
     public String contentView(@RequestParam int noticeId, Model model) {
-        ns.contentView(noticeId, model);
+        noticeService.contentView(noticeId, model);
         return "notice/contentView";
     }
 
@@ -65,8 +65,8 @@ public class NoticeController {
     }
 
     @GetMapping("modify_form")
-    public String modifyfrom(@RequestParam int noticeId, Model model) {
-        ns.contentView(noticeId, model);
+    public String modifyForm(@RequestParam int noticeId, Model model) {
+        noticeService.contentView(noticeId, model);
         return "notice/modify_form";
     }
 
@@ -74,7 +74,7 @@ public class NoticeController {
     public void modify(MultipartHttpServletRequest mul,
                        HttpServletResponse response,
                        HttpServletRequest request) throws Exception {
-        String message = ns.modify(mul, request);
+        String message = noticeService.modify(mul, request);
         response.setContentType("text/html; charset=utf-8");
         PrintWriter out = response.getWriter();
         out.print(message);
@@ -85,7 +85,7 @@ public class NoticeController {
                              @RequestParam String noticeImageFileName,
                              HttpServletResponse response, //응답 메세지
                              HttpServletRequest request) throws Exception { //경로 가져오려고사용
-        String message = ns.noticeDelete(noticeId, noticeImageFileName, request);
+        String message = noticeService.noticeDelete(noticeId, noticeImageFileName, request);
         response.setContentType("text/html; charset=utf-8");
         PrintWriter out = response.getWriter();
         out.print(message); // 성공,실패 메세지

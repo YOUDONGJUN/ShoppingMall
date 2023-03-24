@@ -16,14 +16,14 @@ import java.util.Collections;
 public class OrderService {
 
     @Autowired
-    OrderMapper mapper;
+    OrderMapper orderMapper;
 
     public void getUserOrdersDeliveryStates(HttpServletRequest request,
                                             Model model,
                                             HttpSession session) {
-        MemberDTO dto = (MemberDTO) session.getAttribute("userSessionData");
-        String LoginUserIdx = dto.getMemberIdx();
-        ArrayList<String> deliveryStateList = mapper.getUserOrdersDeliveryStates(LoginUserIdx);
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("userSessionData");
+        String LoginUserIdx = memberDTO.getMemberIdx();
+        ArrayList<String> deliveryStateList = orderMapper.getUserOrdersDeliveryStates(LoginUserIdx);
         model.addAttribute("deliveryStateList", deliveryStateList);
         deliveryStateList.forEach((deliveryState) -> System.out.println(deliveryState));
         System.out.println(deliveryStateList);
@@ -42,9 +42,9 @@ public class OrderService {
 
     public void getUserOrders(Model model,
                               HttpSession session) {
-        MemberDTO dto = (MemberDTO) session.getAttribute("userSessionData");
-        String LoginUserIdx = dto.getMemberIdx();
-        ArrayList<OrderDTO> userOrderList = mapper.getUserOrders(LoginUserIdx);
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("userSessionData");
+        String LoginUserIdx = memberDTO.getMemberIdx();
+        ArrayList<OrderDTO> userOrderList = orderMapper.getUserOrders(LoginUserIdx);
         model.addAttribute("userOrderList", userOrderList);
         userOrderList.forEach((order) -> System.out.println(order.getOrderProductName()));
     }

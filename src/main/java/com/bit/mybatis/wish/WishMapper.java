@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 @Mapper
 public interface WishMapper {
-	public ArrayList<WishDTO> getUserWishes(String memberIdx);
-	public void deleteUserWishes(String wishId);
+    public ArrayList<WishDTO> getUserWishes(String memberIdx);
+
+    public void deleteUserWishes(String wishId);
 }

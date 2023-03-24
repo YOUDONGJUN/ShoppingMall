@@ -1,12 +1,16 @@
-package com.bit.mypage.controller;
+package com.bit.myPage.controller;
+
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bit.member.dto.MemberDTO;
 import com.bit.member.service.MemberService;
 import com.bit.mileage.service.MileageService;
 import com.bit.mybatis.product.ProductMapper;
 import com.bit.order.service.OrderService;
-import com.bit.review.service.ReviewService;
-import com.bit.wish.service.WishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,32 +19,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import com.bit.review.service.ReviewService;
+import com.bit.wish.service.WishService;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.PrintWriter;
 
 @Controller
-@RequestMapping("mypage")
-public class MypageController {
+@RequestMapping("myPage")
+public class MyPageController {
     @Autowired
-    MemberService ms;
+    MemberService memberService;
     @Autowired
-    OrderService os;
+    OrderService orderService;
     @Autowired
-    WishService ws;
+    WishService wishService;
     @Autowired
-    MileageService mls;
+    MileageService mileageService;
     @Autowired
-    ReviewService rs;
+    ReviewService reviewService;
     @Autowired
-    ProductMapper mapper;
+    ProductMapper productMapper;
 
     /* 마이페이지 컨트롤러 */
-    @GetMapping("mypage")
-    public String mypage() {
-        return "mypage/mypage";
+    @GetMapping("myPage")
+    public String myPage() {
+        return "myPage/myPage";
     }
 
     @GetMapping("cart")
@@ -53,56 +55,56 @@ public class MypageController {
 		}
 		*/
         String memberId = (String) session.getAttribute("loginUser");
-        String memberIdx = mapper.selectMemberIdx(memberId);
-        model.addAttribute("cart", mapper.selectCart(memberIdx));
-        return "mypage/cart";
+        String memberIdx = productMapper.selectMemberIdx(memberId);
+        model.addAttribute("cart", productMapper.selectCart(memberIdx));
+        return "myPage/cart";
     }
 //	myPage
 
     @GetMapping("readOrders")
-    public String readOrders(MemberDTO dto,
+    public String readOrders(MemberDTO memberDTO,
                              HttpServletRequest request,
                              Model model,
                              HttpSession session) {
-        os.getUserOrdersDeliveryStates(request, model, session);
-        os.getUserOrders(model, session);
+        orderService.getUserOrdersDeliveryStates(request, model, session);
+        orderService.getUserOrders(model, session);
 
         return "eunbin/readOrders";
     }
 
     @GetMapping("readWishes")
-    public String readWishes(MemberDTO dto,
+    public String readWishes(MemberDTO memberDTO,
                              HttpServletRequest request,
                              Model model,
                              HttpSession session) {
-        ws.getUserWishes(model, session);
+        wishService.getUserWishes(model, session);
         return "eunbin/readWishes";
     }
 
     @GetMapping("readMileage")
-    public String readMileage(MemberDTO dto,
+    public String readMileage(MemberDTO memberDTO,
                               HttpServletRequest request,
                               Model model,
                               HttpSession session) {
-        mls.getUserMileages(model, session);
-        mls.getUserTotalMileage(model, session);
-        mls.getUserMileageStateList(request, model, session);
+        mileageService.getUserMileages(model, session);
+        mileageService.getUserTotalMileage(model, session);
+        mileageService.getUserMileageStateList(request, model, session);
         return "eunbin/readMileage";
     }
 
     @GetMapping("readUnusedMileage")
-    public String readUnusedMileage(MemberDTO dto,
+    public String readUnusedMileage(MemberDTO memberDTO,
                                     HttpServletRequest request,
                                     Model model,
                                     HttpSession session) {
-        mls.getUnusedUserMileages(model, session);
-        mls.getUserTotalMileage(model, session);
-        mls.getUserMileageStateList(request, model, session);
+        mileageService.getUnusedUserMileages(model, session);
+        mileageService.getUserTotalMileage(model, session);
+        mileageService.getUserMileageStateList(request, model, session);
         return "eunbin/readMileage";
     }
 
     @GetMapping("/createReview")
-    public String createReview(MemberDTO dto,
+    public String createReview(MemberDTO memberDTO,
                                MultipartHttpServletRequest mul,
                                HttpServletRequest request,
                                HttpServletResponse response,
@@ -118,12 +120,12 @@ public class MypageController {
     }
 
     @PostMapping("saveReview")
-    public void saveReview(MemberDTO dto,
+    public void saveReview(MemberDTO memberDTO,
                            MultipartHttpServletRequest mul,
                            HttpServletRequest request,
                            HttpServletResponse response) throws Exception {
 
-        String message = rs.reviewSave(mul, request, "test");
+        String message = reviewService.reviewSave(mul, request, "test");
         response.setContentType("text/html; charset=utf-8");
         PrintWriter out = response.getWriter();
         out.print(message);

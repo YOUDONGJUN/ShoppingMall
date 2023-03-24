@@ -399,7 +399,7 @@
 
         $.ajax({
             type: "post",
-            url: "memberIdChk",
+            url: "memberIdCheck",
             data: data,
             success: function (result) {
                 if (result != 'fail') {

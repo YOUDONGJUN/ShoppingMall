@@ -19,10 +19,10 @@ import java.util.List;
 public class BoardService {
 
     @Autowired
-    BoardMapper mapper;
+    BoardMapper boardMapper;
 
     public void selectAllBoardList(Model model, int num) {
-        int allCount = mapper.selectBoardCount(); // 글 총 개수 얻어오기
+        int allCount = boardMapper.selectBoardCount(); // 글 총 개수 얻어오기
         int pageLetter = 3; //한 페이지에 3개의 글 표현
         int repeat = allCount / pageLetter;
         if (allCount % pageLetter != 0) {
@@ -31,99 +31,99 @@ public class BoardService {
         int end = num * pageLetter;
         int start = end + 1 - pageLetter;
         model.addAttribute("repeat", repeat);
-        model.addAttribute("boardList", mapper.selectAllBoardList(start, end));
+        model.addAttribute("boardList", boardMapper.selectAllBoardList(start, end));
     }
 
 
     public String writeSave(MultipartHttpServletRequest mul,
                             HttpServletRequest request) {
-        BoardDTO dto = new BoardDTO();
-        dto.setTitle(mul.getParameter("title"));
-        dto.setContent(mul.getParameter("content"));
+        BoardDTO boardDTO = new BoardDTO();
+        boardDTO.setTitle(mul.getParameter("title"));
+        boardDTO.setContent(mul.getParameter("content"));
         HttpSession session = request.getSession();
-        dto.setId((String) session.getAttribute(MemberSessionName.LOGIN));
+        boardDTO.setId((String) session.getAttribute(MemberSessionName.LOGIN));
 
         MultipartFile file = mul.getFile("image_file_name");
 
         BoardFileService bfs = new BoardFileService();
 
         if (file.isEmpty()) { // 파일이 비워있으면 true
-            dto.setImageFileName("nan");
+            boardDTO.setImageFileName("nan");
         } else { //파일이 존재하는 경우
-            dto.setImageFileName(bfs.saveFile(file));
+            boardDTO.setImageFileName(bfs.saveFile(file));
         }
 		/*
 		int result = mapper.writeSave(dto);
 		String com.bit.message = bfs.getMessage(result, request);
 		return com.bit.message;
 		*/
-        return bfs.getMessage(mapper.writeSave(dto), request);
+        return bfs.getMessage(boardMapper.writeSave(boardDTO), request);
     }
 
 
     public void contentView(int writeNo, Model model) {
-        model.addAttribute("personalData", mapper.contentView(writeNo));
+        model.addAttribute("personalData", boardMapper.contentView(writeNo));
         upHit(writeNo);
     }
 
     private void upHit(int writeNo) {
-        mapper.upHit(writeNo);
+        boardMapper.upHit(writeNo);
     }
 
 
     public String boardDelete(int writeNo, String imageFileName, HttpServletRequest request) {
         BoardFileService bfs = new BoardFileService();
-        int result = mapper.delete(writeNo);
+        int result = boardMapper.delete(writeNo);
 
-        MessageDTO dto = new MessageDTO();
+        MessageDTO messageDTO = new MessageDTO();
 
         if (result == 1) {//DB삭제 성공
             bfs.deleteImage(imageFileName);
         }
-        dto.setRequest(request);
-        dto.setResult(result);
-        dto.setSuccessMessage("성공적으로 삭제 되었습니다");
-        dto.setSuccessURL("/board/boardAllList");
-        dto.setFailMessage("삭제 중 문제가 발생하였습니다");
-        dto.setFailURL("/board/contentView");
+        messageDTO.setRequest(request);
+        messageDTO.setResult(result);
+        messageDTO.setSuccessMessage("성공적으로 삭제 되었습니다");
+        messageDTO.setSuccessURL("/board/boardAllList");
+        messageDTO.setFailMessage("삭제 중 문제가 발생하였습니다");
+        messageDTO.setFailURL("/board/contentView");
 
-        return bfs.getMessage(dto);
+        return bfs.getMessage(messageDTO);
     }
 
     public String modify(MultipartHttpServletRequest mul, HttpServletRequest request) {
-        BoardDTO dto = new BoardDTO();
-        dto.setWriteNo(Integer.parseInt(mul.getParameter("writeNo")));
-        dto.setTitle(mul.getParameter("title"));
-        dto.setContent(mul.getParameter("content"));
+        BoardDTO boardDTO = new BoardDTO();
+        boardDTO.setWriteNo(Integer.parseInt(mul.getParameter("writeNo")));
+        boardDTO.setTitle(mul.getParameter("title"));
+        boardDTO.setContent(mul.getParameter("content"));
 
         MultipartFile file = mul.getFile("imageFileName");
         BoardFileService bfs = new BoardFileService();
 
         if (file.isEmpty()) { // 이미지 변경 되지 않았음
-            dto.setImageFileName(mul.getParameter("originFileName"));
+            boardDTO.setImageFileName(mul.getParameter("originFileName"));
         } else { // 이미지 변경 되었음.
-            dto.setImageFileName(bfs.saveFile(file));
+            boardDTO.setImageFileName(bfs.saveFile(file));
             bfs.deleteImage(mul.getParameter("originFileName"));
         }
-        int result = mapper.modify(dto);
+        int result = boardMapper.modify(boardDTO);
 
-        MessageDTO mDto = new MessageDTO();
-        mDto.setResult(result);
-        mDto.setRequest(request);
-        mDto.setSuccessMessage("성공적으로 수정되었습니다");
-        mDto.setSuccessURL("/board/boardAllList");
-        mDto.setFailMessage("수정 중 문제 발생!!!");
-        mDto.setFailURL("/board/modify_form");
+        MessageDTO messageDTO = new MessageDTO();
+        messageDTO.setResult(result);
+        messageDTO.setRequest(request);
+        messageDTO.setSuccessMessage("성공적으로 수정되었습니다");
+        messageDTO.setSuccessURL("/board/boardAllList");
+        messageDTO.setFailMessage("수정 중 문제 발생!!!");
+        messageDTO.setFailURL("/board/modify_form");
 
-        return bfs.getMessage(mDto);
+        return bfs.getMessage(messageDTO);
     }
 
-    public void addReply(BoardRepDTO dto) {
-        mapper.addReply(dto);
+    public void addReply(BoardRepDTO boardRepDTO) {
+        boardMapper.addReply(boardRepDTO);
     }
 
     public List<BoardRepDTO> getRepList(int write_group) {
-        return mapper.getRepList(write_group);
+        return boardMapper.getRepList(write_group);
     }
 
 }

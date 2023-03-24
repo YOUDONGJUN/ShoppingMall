@@ -12,42 +12,44 @@ import java.util.UUID;
 
 @Service
 public class CartService {
-	@Autowired
-	CartMapper mapper;
+    @Autowired
+    CartMapper cartMapper;
 
-	public String getMessage(int num, HttpServletRequest request) {
-		String message = null; //num = mapper.reviewSave(rDto);
-		if(num == 1) {
-			message = "<script>alert('새 장바구니 상품을 성공적으로 추가 했습니다');";
-			//com.bit.message += "location.href='/root/com.bit.board/boardAllList';</script>";
-			message +=
-					"location.href='"+request.getContextPath()+"/mypage/reaWishes';</script>";
-		}else {
-			message = "<script>alert('새 장바구니 상품 등록에 실패했습니다.');";
-			//com.bit.message += "location.href='/root/com.bit.board/writeForm';</script>";
-			message +=
-					"location.href='"+request.getContextPath()+"/mypage/reaWishes'';</script>";
-		}
-		return message;
-	}
+    public String getMessage(int num, HttpServletRequest request) {
+        String message = null; //num = mapper.reviewSave(rDto);
+        if (num == 1) {
+            message = "<script>alert('새 장바구니 상품을 성공적으로 추가 했습니다');";
+            //com.bit.message += "location.href='/root/com.bit.board/boardAllList';</script>";
+            message +=
+                    "location.href='" + request.getContextPath() + "/myPage/reaWishes';</script>";
+        } else {
+            message = "<script>alert('새 장바구니 상품 등록에 실패했습니다.');";
+            //com.bit.message += "location.href='/root/com.bit.board/writeForm';</script>";
+            message +=
+                    "location.href='" + request.getContextPath() + "/myPage/reaWishes'';</script>";
+        }
+        return message;
+    }
 
-	public String insertUserCart(HttpServletRequest request,
-								 HttpSession session,
-								 int cartProductCounts,
-								 String cartProductId,
-								 String cartProductFile1,
-								 int cartProductPrice) {
+    public String insertUserCart(HttpServletRequest request,
+                                 HttpSession session,
+                                 int cartProductCounts,
+                                 String cartProductId,
+                                 String cartProductFile1,
+                                 int cartProductPrice) {
 
-		CartDTO cDto = new CartDTO();
-		cDto.setCartId(UUID.randomUUID().toString().replace("-", ""));
-		MemberDTO mDto = (MemberDTO) session.getAttribute("userSessionData");
-		String LoginUserIdx = mDto.getMemberIdx();
-		cDto.setMemberId(LoginUserIdx);
-		cDto.setCartProductCounts(cartProductCounts);
-		cDto.setCartProductFile1(cartProductFile1);
-		cDto.setCartProductId(cartProductId);
-		cDto.setCartProductPrice(cartProductPrice);
+        CartDTO cartDTO = new CartDTO();
+        cartDTO.setCartId(UUID.randomUUID().toString().replace("-", ""));
 
-		return getMessage(mapper.insertUserCart(cDto), request);
-	}
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("userSessionData");
+
+        String LoginUserIdx = memberDTO.getMemberIdx();
+        cartDTO.setMemberId(LoginUserIdx);
+        cartDTO.setCartProductCounts(cartProductCounts);
+        cartDTO.setCartProductFile1(cartProductFile1);
+        cartDTO.setCartProductId(cartProductId);
+        cartDTO.setCartProductPrice(cartProductPrice);
+
+        return getMessage(cartMapper.insertUserCart(cartDTO), request);
+    }
 }

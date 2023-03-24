@@ -1,6 +1,7 @@
 package com.bit.board.service;
 
 import com.bit.message.MessageDTO;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +9,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-
+@Service
 public class BoardFileService {
     public static final String IMAGE_REPO = "c:/spring/image_repo";
 
@@ -30,10 +31,10 @@ public class BoardFileService {
 
 
     public String saveFile(MultipartFile file) {
-        SimpleDateFormat simpl = new SimpleDateFormat("yyyyMMddHHmmss-");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
         Calendar calendar = Calendar.getInstance();
         String sysFileName =
-                simpl.format(calendar.getTime()) + file.getOriginalFilename();
+                sdf.format(calendar.getTime()) + file.getOriginalFilename();
         File saveFile = new File(IMAGE_REPO + "/" + sysFileName);
         try {
             file.transferTo(saveFile);

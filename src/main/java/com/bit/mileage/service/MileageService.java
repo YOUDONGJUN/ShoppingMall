@@ -15,17 +15,17 @@ import java.util.Collections;
 @Service
 public class MileageService {
 
-
     @Autowired
-    MileageMapper mapper;
-
+    MileageMapper mileageMapper;
 
     public void getUserMileageStateList(HttpServletRequest request, Model model, HttpSession session) {
-        MemberDTO dto = (MemberDTO) session.getAttribute("userSessionData");
-        String LoginUserIdx = dto.getMemberIdx();
-        ArrayList<String> userMileageStateList = mapper.getUserMileageStateList(LoginUserIdx);
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("userSessionData");
+        String LoginUserIdx = memberDTO.getMemberIdx();
+
+        ArrayList<String> userMileageStateList = mileageMapper.getUserMileageStateList(LoginUserIdx);
         model.addAttribute("userMileageStateList", userMileageStateList);
         System.out.println(userMileageStateList);
+
         userMileageStateList.forEach((mileageState) -> System.out.println(mileageState));
 
         int usableMileageCount = Collections.frequency(userMileageStateList, "사용가능");
@@ -41,9 +41,10 @@ public class MileageService {
 
 
     public void getUserMileages(Model model, HttpSession session) {
-        MemberDTO dto = (MemberDTO) session.getAttribute("userSessionData");
-        String LoginUserIdx = dto.getMemberIdx();
-        ArrayList<MileageDTO> userMileageList = mapper.getUserMileages(LoginUserIdx);
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("userSessionData");
+        String LoginUserIdx = memberDTO.getMemberIdx();
+        ArrayList<MileageDTO> userMileageList = mileageMapper.getUserMileages(LoginUserIdx);
+
         model.addAttribute("userMileageList", userMileageList);
         System.out.println(userMileageList);
         userMileageList.forEach((mileage) -> System.out.println(mileage.getMileageStatus()));
@@ -51,9 +52,9 @@ public class MileageService {
 
 
     public void getUserTotalMileage(Model model, HttpSession session) {
-        MemberDTO dto = (MemberDTO) session.getAttribute("userSessionData");
-        String LoginUserIdx = dto.getMemberIdx();
-        int UserTotalMileageCount = mapper.getUserTotalMileage(LoginUserIdx);
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("userSessionData");
+        String LoginUserIdx = memberDTO.getMemberIdx();
+        int UserTotalMileageCount = mileageMapper.getUserTotalMileage(LoginUserIdx);
         model.addAttribute("UserTotalMileageCount", UserTotalMileageCount);
         System.out.println(UserTotalMileageCount);
 
@@ -61,9 +62,10 @@ public class MileageService {
 
 
     public void getUnusedUserMileages(Model model, HttpSession session) {
-        MemberDTO dto = (MemberDTO) session.getAttribute("userSessionData");
-        String LoginUserIdx = dto.getMemberIdx();
-        ArrayList<MileageDTO> userMileageList = mapper.getUnusedUserMileages(LoginUserIdx);
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("userSessionData");
+        String LoginUserIdx = memberDTO.getMemberIdx();
+        
+        ArrayList<MileageDTO> userMileageList = mileageMapper.getUnusedUserMileages(LoginUserIdx);
         model.addAttribute("userMileageList", userMileageList);
         System.out.println(userMileageList);
         userMileageList.forEach((mileage) -> System.out.println(mileage.getMileageStatus()));

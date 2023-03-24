@@ -15,14 +15,14 @@ import java.util.ArrayList;
 public class WishService {
 
     @Autowired
-    WishMapper mapper;
+    WishMapper wishMapper;
 
 
     public void getUserWishes(Model model, HttpSession session) {
         // TODO Auto-generated method stub
-        MemberDTO dto = (MemberDTO) session.getAttribute("userSessionData");
-        String LoginUserIdx = dto.getMemberIdx();
-        ArrayList<WishDTO> userWishList = mapper.getUserWishes(LoginUserIdx);
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("userSessionData");
+        String LoginUserIdx = memberDTO.getMemberIdx();
+        ArrayList<WishDTO> userWishList = wishMapper.getUserWishes(LoginUserIdx);
         model.addAttribute("userWishList", userWishList);
         userWishList.forEach((wish) -> System.out.println(wish.getWishName()));
 
@@ -33,6 +33,6 @@ public class WishService {
         System.out.println("wishService");
         System.out.println(wishId);
 
-        mapper.deleteUserWishes(wishId);
+        wishMapper.deleteUserWishes(wishId);
     }
 }

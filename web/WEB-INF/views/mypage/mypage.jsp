@@ -64,7 +64,7 @@
             width: 400px;
         }
 
-        .section2 .myboard {
+        .section2 .myBoard {
             order: 1;
             border: 1px solid #00264d;
             width: 48%;
@@ -127,14 +127,14 @@
     </div>
 
     <div class="section2">
-        <nav class="myboard">
-            <a href="${contextPath}/board/myboard">
+        <nav class="myBoard">
+            <a href="${contextPath}/board/myBoard">
                 <h4><b>My Board</b></h4>
                 <h6>게시물 관리</h6>
             </a>
         </nav>
         <nav class="mileage">
-            <a href="${contextPath}/mypage/readMileage">
+            <a href="${contextPath}/myPage/readMileage">
                 <h4><b>Mileage</b></h4>
                 <h6>적립금</h6>
             </a>

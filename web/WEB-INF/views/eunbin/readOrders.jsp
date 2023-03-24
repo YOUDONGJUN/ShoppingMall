@@ -171,7 +171,7 @@
             <ul>
                 <li>
                     <div class="menu-nav">
-                        <a class="nav-link" href="${contextPath }/mypage/readOrders">
+                        <a class="nav-link" href="${contextPath }/myPage/readOrders">
                             <div class="p">
                                 <div class="p-2">
                                     <b>Order</b>
@@ -195,7 +195,7 @@
                 </li>
                 <li>
                     <div class="menu-nav">
-                        <a class="nav-link" href="${contextPath }/mypage/readWishes">
+                        <a class="nav-link" href="${contextPath }/myPage/readWishes">
                             <div class="p">
                                 <div class="p-2">
                                     <b>Wishlist</b>
@@ -207,7 +207,7 @@
                 </li>
                 <li>
                     <div class="menu-nav">
-                        <a class="nav-link" href="${contextPath }/mypage/readMileage">
+                        <a class="nav-link" href="${contextPath }/myPage/readMileage">
                             <div class="p">
                                 <div class="p-2">
                                     <b>Mileage</b>

@@ -5,8 +5,8 @@ import lombok.Data;
 import java.sql.Date;
 
 @Data
-//판매자 답변
-public class QnaADTO {
+//판매자 답변 
+public class QnaAnswerDTO {
 
     // 답변 아이디
     private String answerId;
@@ -25,5 +25,8 @@ public class QnaADTO {
 
     // 답변 생성 날짜
     private Date answerCreateDate;
+
+    // 답변 조회수
+    private int answerViews;
 
 }

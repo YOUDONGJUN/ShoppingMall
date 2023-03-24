@@ -21,17 +21,17 @@ import java.util.UUID;
 public class MemberService {
 
     @Autowired
-    MemberMapper mapper;
+    MemberMapper memberMapper;
 
     public int user_check(HttpServletRequest request, Model model, HttpSession session) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-        MemberDTO dto = mapper.user_check(request.getParameter("memberId"));
-        if (dto != null) {
+        MemberDTO memberDTO = memberMapper.user_check(request.getParameter("memberId"));
+        if (memberDTO != null) {
             //if(request.getParameter("pw").equals(dto.getPw())) {
-            if (encoder.matches(request.getParameter("memberPassword"), dto.getMemberPassword()) || request.getParameter("memberPassword").equals(dto.getMemberPassword())) {
-                model.addAttribute("userDataOnThisPageRequest", mapper.user_check(request.getParameter("memberId")));
-                session.setAttribute("userSessionData", mapper.user_check(request.getParameter("memberId")));
+            if (encoder.matches(request.getParameter("memberPassword"), memberDTO.getMemberPassword()) || request.getParameter("memberPassword").equals(memberDTO.getMemberPassword())) {
+                model.addAttribute("userDataOnThisPageRequest", memberMapper.user_check(request.getParameter("memberId")));
+                session.setAttribute("userSessionData", memberMapper.user_check(request.getParameter("memberId")));
                 return 0;
             }
         }
@@ -41,23 +41,23 @@ public class MemberService {
 
     // 로그인한 회원 정보
     public void profile(Model model, String userId) {
-        MemberDTO list = mapper.profile(userId);
+        MemberDTO list = memberMapper.profile(userId);
         model.addAttribute("memberList", list);
         //model.addAttribute("memberList", mapper.memberInfo());
     }
 
     public void memberInfo(Model model) {
-        ArrayList<MemberDTO> list = mapper.memberInfo();
+        ArrayList<MemberDTO> list = memberMapper.memberInfo();
         model.addAttribute("memberList", list);
         //model.addAttribute("memberList", mapper.memberInfo());
     }
 
     public void info(String memberId, Model model) {
-        model.addAttribute("info", mapper.info(memberId));
+        model.addAttribute("info", memberMapper.info(memberId));
     }
 
-    public int register(MemberDTO dto) {
-        dto.setMemberId(dto.getMemberId());
+    public int register(MemberDTO memberDTO) {
+        memberDTO.setMemberId(memberDTO.getMemberId());
 		/*
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		//dto.setPw(encoder.encode(dto.getPw()));
@@ -65,24 +65,24 @@ public class MemberService {
 		String pw = encoder.encode(dto.getMemberPassword());
 		System.out.println("암호화 후 : "+pw);
 		*/
-        dto.setMemberIdx(UUID.randomUUID().toString().replace("-", ""));
+        memberDTO.setMemberIdx(UUID.randomUUID().toString().replace("-", ""));
 
-        dto.setMemberPassword(dto.getMemberPassword());
-        dto.setMemberName(dto.getMemberName());
-        dto.setMemberPhone(dto.getMemberPhone());
-        dto.setMemberAddress(dto.getMemberAddress());
-        dto.setMemberAddress2(dto.getMemberAddress2());
-        dto.setMemberEmail(dto.getMemberEmail());
+        memberDTO.setMemberPassword(memberDTO.getMemberPassword());
+        memberDTO.setMemberName(memberDTO.getMemberName());
+        memberDTO.setMemberPhone(memberDTO.getMemberPhone());
+        memberDTO.setMemberAddress(memberDTO.getMemberAddress());
+        memberDTO.setMemberAddress2(memberDTO.getMemberAddress2());
+        memberDTO.setMemberEmail(memberDTO.getMemberEmail());
 
-        dto.setMemberLimitTime(new Date(System.currentTimeMillis()));
-        dto.setMemberSessionId("nan");
+        memberDTO.setMemberLimitTime(new Date(System.currentTimeMillis()));
+        memberDTO.setMemberSessionId("nan");
 
-        dto.setMemberRole("user");
+        memberDTO.setMemberRole("user");
         Date createDate = new Date(System.currentTimeMillis());
-        dto.setMemberCreateDate(createDate);
+        memberDTO.setMemberCreateDate(createDate);
 
         try {
-            return mapper.register(dto);
+            return memberMapper.register(memberDTO);
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -92,19 +92,19 @@ public class MemberService {
     //로그인 한 회원정보 수정
     public void modify(HttpServletRequest request) {
 
-        MemberDTO dto = new MemberDTO();
-        dto.setMemberId((String) request.getParameter("id"));
-        dto.setMemberPassword((String) request.getParameter("pw"));
-        dto.setMemberPhone((String) request.getParameter("phone"));
-        dto.setMemberEmail((String) request.getParameter("email"));
-        dto.setMemberAddress((String) request.getParameter("memberAddress"));
-        dto.setMemberAddress2((String) request.getParameter("memberAddress2"));
-        mapper.modify(dto);
+        MemberDTO memberDTO = new MemberDTO();
+        memberDTO.setMemberId((String) request.getParameter("id"));
+        memberDTO.setMemberPassword((String) request.getParameter("pw"));
+        memberDTO.setMemberPhone((String) request.getParameter("phone"));
+        memberDTO.setMemberEmail((String) request.getParameter("email"));
+        memberDTO.setMemberAddress((String) request.getParameter("memberAddress"));
+        memberDTO.setMemberAddress2((String) request.getParameter("memberAddress2"));
+        memberMapper.modify(memberDTO);
     }
 
     //로그인 한 회원 탈퇴
     public void delete(String userId) {
-        mapper.delete(userId);
+        memberMapper.delete(userId);
         /* model.addAttribute("delete", list); */
     }
 
@@ -113,22 +113,22 @@ public class MemberService {
         map.put("memberSessionId", memberSessionId);
         map.put("memberLimitTime", memberLimitTime);
         map.put("memberId", memberId);
-        mapper.keepLogin(map);
+        memberMapper.keepLogin(map);
     }
 
     public MemberDTO getUserSessionId(String memberSessionId) {
-        return mapper.getUserSessionId(memberSessionId);
+        return memberMapper.getUserSessionId(memberSessionId);
     }
 
     public int idCheck(String memberId) {
-        return mapper.idCheck(memberId);
+        return memberMapper.idCheck(memberId);
     }
 
     //아이디 찾기
     public String find_id(HttpServletResponse response, String email) throws Exception {
         response.setContentType("text/html;charset=utf-8");
         PrintWriter out = response.getWriter();
-        String id = mapper.find_id(email);
+        String id = memberMapper.find_id(email);
 
         if (id == null) {
             out.println("<script>");
@@ -147,7 +147,7 @@ public class MemberService {
     public String find_pw(HttpServletResponse response, String id) throws Exception {
         response.setContentType("text/html;charset=utf-8");
         PrintWriter out = response.getWriter();
-        String pw = mapper.find_pw(id);
+        String pw = memberMapper.find_pw(id);
 
         if (id == null) {
             out.println("<script>");

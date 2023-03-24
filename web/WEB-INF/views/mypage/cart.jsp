@@ -128,7 +128,7 @@
         <h3>C A R T</h3><br>
     </div>
     <div class="cartContainer">
-        <form id="fo" action="${contextPath}/mypage/cart" method="get">
+        <form id="fo" action="${contextPath}/myPage/cart" method="get">
             <table class="table">
                 <th><input id="checkAll" type="checkbox" onclick="allCheck()"></th>
                 <th>이미지</th>

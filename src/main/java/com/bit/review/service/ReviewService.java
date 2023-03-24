@@ -16,55 +16,54 @@ import java.util.UUID;
 @Service
 public class ReviewService {
     @Autowired
-    ReviewMapper mapper;
-
+    ReviewMapper reviewMapper;
 
     public String reviewSave(MultipartHttpServletRequest mul,
                              HttpServletRequest request,
                              @RequestParam(value = "orderProductId", defaultValue = "ProductId") String orderProductId) {
-        ReviewDTO rDto = new ReviewDTO();
+        ReviewDTO reviewDTO = new ReviewDTO();
         HttpSession session = request.getSession();
-        rDto.setReviewId(UUID.randomUUID().toString().replace("-", ""));
-        rDto.setReviewTitle(mul.getParameter("title"));
-        rDto.setProductScore(Integer.parseInt(mul.getParameter("score")));
-        rDto.setProductDegree(mul.getParameter("degree"));
-        rDto.setReviewContent(mul.getParameter("content"));
-        rDto.setProductId((String) session.getAttribute("orderProductId"));
-        rDto.setProductName((String) session.getAttribute("orderProductName"));
+        reviewDTO.setReviewId(UUID.randomUUID().toString().replace("-", ""));
+        reviewDTO.setReviewTitle(mul.getParameter("title"));
+        reviewDTO.setProductScore(Integer.parseInt(mul.getParameter("score")));
+        reviewDTO.setProductDegree(mul.getParameter("degree"));
+        reviewDTO.setReviewContent(mul.getParameter("content"));
+        reviewDTO.setProductId((String) session.getAttribute("orderProductId"));
+        reviewDTO.setProductName((String) session.getAttribute("orderProductName"));
 
         System.out.println("------------------");
         System.out.println((String) session.getAttribute("orderProductId"));
         System.out.println((String) session.getAttribute("orderProductName"));
 
-        MemberDTO mDto = (MemberDTO) session.getAttribute("userSessionData");
-        String LoginUserIdx = mDto.getMemberIdx();
-        rDto.setReviewWriterIdx(LoginUserIdx);
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("userSessionData");
+        String LoginUserIdx = memberDTO.getMemberIdx();
+        reviewDTO.setReviewWriterIdx(LoginUserIdx);
 
         MultipartFile file = mul.getFile("image_file_name");
         ReviewFileService rfs = new ReviewFileService();
 
         if (file.isEmpty()) { // 파일이 비워있으면 true
-            rDto.setProductFile1("nan");
+            reviewDTO.setProductFile1("nan");
         } else { //파일이 존재하는 경우
-            rDto.setProductFile1(rfs.saveFile(file));
+            reviewDTO.setProductFile1(rfs.saveFile(file));
         }
 		/*
 		int result = mapper.writeSave(dto);
 		String com.bit.message = bfs.getMessage(result, request);
 		return com.bit.message;
 		*/
-        System.out.println(rDto);
-        System.out.println("ReviewWriterIdx" + rDto.getReviewWriterIdx());
-        System.out.println(rDto.getReviewTitle());
-        System.out.println(rDto.getReviewId());
-        System.out.println(rDto.getReviewContent());
-        System.out.println(rDto.getProductScore());
-        System.out.println(rDto.getProductName()); //null 들어옴
-        System.out.println(rDto.getProductId()); //null 들어옴
-        System.out.println(rDto.getProductDegree());
-        System.out.println(rDto.getProductFile1()); //20210703101228-흡수혁명 애견패드 소형 50매2.jpg
+        System.out.println(reviewDTO);
+        System.out.println("ReviewWriterIdx" + reviewDTO.getReviewWriterIdx());
+        System.out.println(reviewDTO.getReviewTitle());
+        System.out.println(reviewDTO.getReviewId());
+        System.out.println(reviewDTO.getReviewContent());
+        System.out.println(reviewDTO.getProductScore());
+        System.out.println(reviewDTO.getProductName()); //null 들어옴
+        System.out.println(reviewDTO.getProductId()); //null 들어옴
+        System.out.println(reviewDTO.getProductDegree());
+        System.out.println(reviewDTO.getProductFile1()); //20210703101228-흡수혁명 애견패드 소형 50매2.jpg
 
-        return rfs.getMessage(mapper.reviewSave(rDto), request);
+        return rfs.getMessage(reviewMapper.reviewSave(reviewDTO), request);
     }
 
 }

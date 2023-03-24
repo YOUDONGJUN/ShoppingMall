@@ -29,10 +29,10 @@ public class NoticeFileService {
 
 
     public String saveFile(MultipartFile file) {
-        SimpleDateFormat simpl = new SimpleDateFormat("yyyyMMddHHmmss-");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
         Calendar calendar = Calendar.getInstance();
         String sysFileName =
-                simpl.format(calendar.getTime()) + file.getOriginalFilename();
+                sdf.format(calendar.getTime()) + file.getOriginalFilename();
         File saveFile = new File(IMAGE_REPO + "/" + sysFileName);
         try {
             file.transferTo(saveFile);
@@ -43,15 +43,15 @@ public class NoticeFileService {
     }
 
 
-    public String getMessage(MessageDTO dto) {
+    public String getMessage(MessageDTO messageDTO) {
         String message = null;
-        String path = dto.getRequest().getContextPath();
-        if (dto.getResult() == 1) {
-            message = "<script>alert('" + dto.getSuccessMessage() + "');";
-            message += "location.href='" + path + dto.getSuccessURL() + "'</script>";
+        String path = messageDTO.getRequest().getContextPath();
+        if (messageDTO.getResult() == 1) {
+            message = "<script>alert('" + messageDTO.getSuccessMessage() + "');";
+            message += "location.href='" + path + messageDTO.getSuccessURL() + "'</script>";
         } else {
-            message = "<script>alert('" + dto.getFailMessage() + "');";
-            message += "location.href='" + path + dto.getFailURL() + "'</script>";
+            message = "<script>alert('" + messageDTO.getFailMessage() + "');";
+            message += "location.href='" + path + messageDTO.getFailURL() + "'</script>";
         }
         return message;
     }

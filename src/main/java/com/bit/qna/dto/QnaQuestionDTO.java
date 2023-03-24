@@ -1,4 +1,4 @@
-package com.bit.dto;
+package com.bit.qna.dto;
 
 import lombok.Data;
 
@@ -6,7 +6,7 @@ import java.sql.Date;
 
 @Data
 // 구매자 질문 
-public class QnaQDTO extends com.bit.qna.dto.QnaQDTO {
+public class QnaQuestionDTO {
 
     // 질문 아이디
     private String questionId;

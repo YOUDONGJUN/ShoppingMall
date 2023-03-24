@@ -43,12 +43,12 @@
             return;
         }
 
-        function qnaAView(questionId) { // 문의 글 누르면 답글 보이기
+        function qnaAnswerView(questionId) { // 문의 글 누르면 답글 보이기
             console.log(questionId)
             var test = {'questionId': questionId}
             var answer = document.getElementById('answer')
             $.ajax({
-                url: "${contextPath }/qnaaview",
+                url: "${contextPath }/qnaAnswerView",
                 type: "POST",
                 data: JSON.stringify(test),
                 contentType: "application/json; charset=utf-8",
@@ -68,7 +68,7 @@
             var productCounts = parseInt(productCnt);
             console.log(productCnt);
             console.log('${productDetail.productId}');
-            var hrefPage = "http://localhost:8085/root/product/insertcart/" + '${productDetail.productId}' + "/" + productCnt;
+            var hrefPage = "http://localhost:8080/root/product/insertCart/" + '${productDetail.productId}' + "/" + productCnt;
             window.document.location.href = hrefPage;
             return;
         }
@@ -306,7 +306,7 @@
                 <td><span><b>${productDetail.productName }</b></span><br>
                     <br> <span><h5>문의 내용</h5></span>
                     <form
-                            action="${contextPath }/com.bit.product/addqnaq/${productDetail.productId }/${productDetail.productCategory }/${productDetail.productName }"
+                            action="${contextPath }/com.bit.product/addQnaQuestion/${productDetail.productId }/${productDetail.productCategory }/${productDetail.productName }"
                             method="post">
 							<textarea class="form-control" rows="5" cols="20"
                                       style="margin-left: 60px;" name="questionContent"></textarea>
@@ -318,15 +318,15 @@
             </table>
         </div>
         <br>
-        <c:forEach var="qnaq" items="${qnaq}">
+        <c:forEach var="qnaQuestion" items="${qnaQuestion}">
             <a href='javascript:void(0);'
-               onclick="qnaAView('${qnaq.questionId}');">
+               onclick="qnaAnswerView('${qnaQuestion.questionId}');">
                 <table class="table">
                     <tr style="margin: -10px;">
                         <td>문의</td>
-                        <td>작성자 : ${qnaq.questionWriterId }</td>
-                        <td>내용 : ${qnaq.questionContent }</td>
-                        <td>질문 생성 날짜 : ${qnaq.questionCreateDate }</td>
+                        <td>작성자 : ${qnaQuestion.questionWriterId }</td>
+                        <td>내용 : ${qnaQuestion.questionContent }</td>
+                        <td>질문 생성 날짜 : ${qnaQuestion.questionCreateDate }</td>
                     </tr>
                     <tr id="answer">
                     </tr>

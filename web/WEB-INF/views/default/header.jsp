@@ -120,14 +120,14 @@
                 <li><a href="${contextPath}/product/allview">ALL</a></li>
             </ul>
             <ul>
-                <li><a href="${contextPath}/mypage/mypage">MYPAGE</a></li>
+                <li><a href="${contextPath}/myPage/myPage">MYPAGE</a></li>
                 <li>
                     <c:choose>
                         <c:when test="${loginUser == null}">
                             <a href="${contextPath}/member/login">CART</a>
                         </c:when>
                         <c:otherwise>
-                            <a href="${contextPath}/mypage/cart">CART</a>
+                            <a href="${contextPath}/myPage/cart">CART</a>
                         </c:otherwise>
                     </c:choose>
                 </li>

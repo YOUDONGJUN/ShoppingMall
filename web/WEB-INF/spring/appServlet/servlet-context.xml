@@ -55,7 +55,7 @@
             <!-- <mapping path="/index"/> -->
             <mapping path="/com.bit.member/memberInfo"/>
             <mapping path="/com.bit.member/Info"/>
-            <mapping path="/mypage/mypage"/>
+            <mapping path="/myPage/myPage"/>
             <beans:ref bean="memberInterceptor"/>
         </interceptor>
     </interceptors>

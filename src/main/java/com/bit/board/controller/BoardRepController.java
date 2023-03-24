@@ -20,21 +20,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/board")
 public class BoardRepController implements MemberSessionName {
-	@Autowired
-	BoardService bs;
-	@PostMapping(value="addReply", produces = "application/json; charset=utf-8")
-	public void addReply(@RequestBody Map<String, Object> map, HttpSession session) {
-		
-		BoardRepDTO dto = new BoardRepDTO();
-		dto.setId( (String)session.getAttribute(LOGIN) );
-		dto.setWrite_group( Integer.parseInt((String)map.get("write_no")) );
-		dto.setTitle((String)map.get("title"));
-		dto.setContent((String)map.get("content"));
-		
-		bs.addReply(dto);
-	}
-	@GetMapping(value="replyData/{write_group}",produces = "application/json; charset=utf-8")
-	public List<BoardRepDTO> replyData(@PathVariable int write_group){
-		return bs.getRepList(write_group);
-	}
+    @Autowired
+    BoardService boardService;
+
+    @PostMapping(value = "addReply", produces = "application/json; charset=utf-8")
+    public void addReply(@RequestBody Map<String, Object> map, HttpSession session) {
+
+        BoardRepDTO boardRepDTO = new BoardRepDTO();
+        boardRepDTO.setId((String) session.getAttribute(LOGIN));
+        boardRepDTO.setWrite_group(Integer.parseInt((String) map.get("write_no")));
+        boardRepDTO.setTitle((String) map.get("title"));
+        boardRepDTO.setContent((String) map.get("content"));
+
+        boardService.addReply(boardRepDTO);
+    }
+
+    @GetMapping(value = "replyData/{write_group}", produces = "application/json; charset=utf-8")
+    public List<BoardRepDTO> replyData(@PathVariable int write_group) {
+        return boardService.getRepList(write_group);
+    }
 }

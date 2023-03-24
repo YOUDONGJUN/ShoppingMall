@@ -11,7 +11,7 @@ import java.util.Map;
 @RequestMapping("/wish")
 public class WishController {
     @Autowired
-	WishService ws;
+    WishService wishService;
 
     @GetMapping("/readWishes")
     public String createReview() {
@@ -26,7 +26,7 @@ public class WishController {
         try {
             System.out.println("wishController");
             System.out.println(map.get("wishId"));
-            ws.deleteUserWishes(map.get("wishId"), request);
+            wishService.deleteUserWishes(map.get("wishId"), request);
         } catch (Exception e) {
             e.printStackTrace();
         }

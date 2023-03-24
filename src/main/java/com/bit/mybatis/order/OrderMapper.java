@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 @Mapper
 public interface OrderMapper {
-	public ArrayList<String> getUserOrdersDeliveryStates(String memberIdx);
-	public ArrayList<OrderDTO> getUserOrders(String memberIdx);
+    public ArrayList<String> getUserOrdersDeliveryStates(String memberIdx);
+
+    public ArrayList<OrderDTO> getUserOrders(String memberIdx);
 }

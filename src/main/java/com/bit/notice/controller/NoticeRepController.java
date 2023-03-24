@@ -14,23 +14,23 @@ import java.util.Map;
 @RequestMapping("/notice")
 public class NoticeRepController implements MemberSessionName {
     @Autowired
-    NoticeService ns;
+    NoticeService noticeService;
 
     @PostMapping(value = "addReply", produces = "application/json; charset=utf-8")
     public void addReply(@RequestBody Map<String, Object> map, HttpSession session) {
 
-        NoticeRepDTO dto = new NoticeRepDTO();
-        dto.setNoticeWriterId((String) session.getAttribute(LOGIN));
-        dto.setWrite_group(Integer.parseInt((String) map.get("notice_id")));
-        dto.setNoticeTitle((String) map.get("notice_title"));
-        dto.setNoticeContent((String) map.get("notice_content"));
+        NoticeRepDTO noticeRepDTO = new NoticeRepDTO();
+        noticeRepDTO.setNoticeWriterId((String) session.getAttribute(LOGIN));
+        noticeRepDTO.setWrite_group(Integer.parseInt((String) map.get("notice_id")));
+        noticeRepDTO.setNoticeTitle((String) map.get("notice_title"));
+        noticeRepDTO.setNoticeContent((String) map.get("notice_content"));
 
-        ns.addReply(dto);
+        noticeService.addReply(noticeRepDTO);
     }
 
     @GetMapping(value = "replyData/{write_group}", produces = "application/json; charset=utf-8")
     public List<NoticeRepDTO> replyData(@PathVariable int write_group) {
-        return ns.getRepList(write_group);
+        return noticeService.getRepList(write_group);
     }
 }
 

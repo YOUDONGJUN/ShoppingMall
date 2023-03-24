@@ -36,7 +36,7 @@
         <result property="productFile5" column="product_file_5"/>
     </resultMap>
 
-    <resultMap id="qna_q" type="com.bit.dto.QnaQDTO">
+    <resultMap id="qna_q" type="com.bit.dto.QnaQuestionDTO">
         <id property="questionId" column="question_id"/>
         <result property="questionWriterId" column="question_writer_id"/>
         <result property="productPostId" column="product_post_id"/>
@@ -46,7 +46,7 @@
         <result property="questionViews" column="question_views"/>
     </resultMap>
 
-    <resultMap id="qna_a" type="com.bit.dto.QnaADTO">
+    <resultMap id="qna_a" type="com.bit.qna.dto.QnaAnswerDTO">
         <id property="answerId" column="answer_id"/>
         <result property="questionId" column="question_id"/>
         <result property="answerWriterId" column="answer_writer_id"/>
@@ -198,21 +198,21 @@
     </update>
 
     <!-- 문의 리스트 가져오기 -->
-    <select id="selectAllQnaQList" resultMap="qna_q">
+    <select id="selectAllQnaQuestionList" resultMap="qna_q">
         select *
         from qna_Q
         where product_post_id = #{p}
     </select>
 
     <!-- 답변 가져오기 -->
-    <select id="selectQnaAList" resultMap="qna_a">
+    <select id="selectQnaAnswerList" resultMap="qna_a">
         select *
         from qna_A
         where question_id = #{q}
     </select>
 
     <!-- 문의하기 -->
-    <insert id="insertQnaQ">
+    <insert id="insertQnaQuestion">
         insert into qna_Q(question_id, question_writer_id, product_post_id, question_title, question_content,
                           question_create_date, question_views)
         values (#{questionId}, #{questionWriterId}, #{productPostId}, #{questionTitle}, #{questionContent},
