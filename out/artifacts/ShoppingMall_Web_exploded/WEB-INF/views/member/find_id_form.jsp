@@ -23,9 +23,8 @@
         .content .aside {
             display: flex;
             order: 1;
-            margin: auto;
             width: 800px;
-            margin-bottom: 20px;
+            margin: auto auto 20px;
         }
 
 
@@ -82,7 +81,7 @@
             <form class="form" action="${contextPath }/member/find_id.do" method="post">
                 <br><br>
                 <h3>아이디 찾기</h3><br>
-                <hr style="0; height: 2px; background: #00264d">
+                <hr style=" height: 2px; background: #00264d">
 
                 <label><b>Email</b></label>&nbsp;&nbsp;
                 <input type="text" id="memberEmail" name="memberEmail" required><br>

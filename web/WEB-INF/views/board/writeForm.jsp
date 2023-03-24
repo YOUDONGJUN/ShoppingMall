@@ -32,7 +32,7 @@
                 <label for="writer">
                     <b>작성자</b><br>
                 </label>
-                <input class="form-control" type="text" name="id" size="50" value="${loginUser }" readonly>
+                <input class="form-control" type="text" name="id" size="50" value="${loginUser }" id="writer" readonly>
             </div>
             <hr>
 
@@ -40,7 +40,7 @@
                 <label for="title">
                     <b>제목</b><br>
                 </label>
-                <input class="form-control" type="text" size="50" name="title">
+                <input class="form-control" type="text" size="50" name="title" id="title">
                 <hr>
             </div>
 
@@ -48,12 +48,12 @@
                 <label for="content">
                     <b>내용</b><br>
                 </label>
-                <textarea class="form-control" rows="10" cols="50" name="content"></textarea>
+                <textarea class="form-control" rows="10" cols="50" name="content" id="content"></textarea>
             </div>
             <hr>
 
             <label for="file">
-                <b>이미지파일 첨부</b><br>
+                <b id="file">이미지파일 첨부</b><br>
             </label>
 
             <div class="custom-file">

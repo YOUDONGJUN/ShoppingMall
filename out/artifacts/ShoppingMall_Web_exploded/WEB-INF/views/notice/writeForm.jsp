@@ -50,25 +50,25 @@
     <div style="width: 700px; text-align: left; margin: 0 auto;">
         <form action="${contextPath }/notice/writeSave" method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="writer"> <b>아이디</b>
+                <label for="id"> <b>아이디</b>
                 </label> <input class="form-control" style="background-color: #b3d7ff; color: black;" type="text"
                                 size="40" name="notice_writer_id"
-                                value="${loginUser }" readonly>
+                                value="${loginUser }" id="id" readonly>
             </div>
             <hr>
             <div class="form-group">
                 <label for="title"> <b>제 목</b>
-                </label> <input class="form-control" type="text" size="40" name="notice_title">
+                </label> <input class="form-control" type="text" size="40" name="notice_title" id="title">
             </div>
             <hr>
             <div class="form-group">
                 <label for="content"> <b>내용</b><br>
                 </label>
-                <textarea class="form-control" rows="10" cols="50" name="notice_content"></textarea>
+                <textarea class="form-control" rows="10" cols="50" name="notice_content" id="content"></textarea>
             </div>
             <hr>
 
-            <label for="file"> <b>이미지파일 첨부</b><br>
+            <label for="file"> <b id="file">이미지파일 첨부</b><br>
             </label>
 
             <div class="custom-file">

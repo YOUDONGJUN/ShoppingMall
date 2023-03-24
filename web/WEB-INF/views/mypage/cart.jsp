@@ -177,7 +177,7 @@
     </div>
     <hr>
     <div style="text-align: left;">
-        <button id="orderBtn" class="btn btn-primary" onclick="check1()">선택삭제</button>
+        <%--        <button id="orderBtn" class="btn btn-primary" onclick="check1()">선택삭제</button>--%>
         <!-- <button id="orderBtn" class="btn btn-primary">전체삭제</button> -->
         <button id="orderBtn" class="btn btn-primary">구매하기</button>
     </div>

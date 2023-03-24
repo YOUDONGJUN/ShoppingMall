@@ -16,67 +16,67 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
-    @GetMapping("allview") // 모든 상품 보기
+    @GetMapping("allView") // 모든 상품 보기
     public String allView(Model model, @RequestParam(value = "num", required = false, defaultValue = "1") int num) {
         productService.productView(model, num);
         return "product/allView";
     }
 
-    @GetMapping("dogview/{kat}") // 강아지 카테고리 보기
+    @GetMapping("dogView/{kat}") // 강아지 카테고리 보기
     public String dogView(Model model, @PathVariable String kat, @RequestParam(value = "num", required = false, defaultValue = "1") int num) {
         productService.katView(model, kat, num);
         return "product/dogView";
     }
 
-    @GetMapping("catview/{kat}") // 고양이 카테고리 보기
+    @GetMapping("catView/{kat}") // 고양이 카테고리 보기
     public String catView(Model model, @PathVariable String kat, @RequestParam(value = "num", required = false, defaultValue = "1") int num) {
         productService.katView(model, kat, num);
         return "product/catView";
     }
 
-    @GetMapping("recommendallview") // 모든 상품 인기도순 보기
+    @GetMapping("recommendAllView") // 모든 상품 인기도순 보기
     public String recommendAllView(Model model, @RequestParam(value = "num", required = false, defaultValue = "1") int num) {
         productService.recommendAllView(model, num);
         return "product/recommendAllView";
     }
 
-    @GetMapping("recommenddogview/{kat}") // 강아지 인기도순 보기
+    @GetMapping("recommendDogView/{kat}") // 강아지 인기도순 보기
     public String recommendDogView(Model model, @PathVariable String kat, @RequestParam(value = "num", required = false, defaultValue = "1") int num) {
         productService.recommendKatView(model, kat, num);
         return "product/recommendDogView";
     }
 
-    @GetMapping("recommendcatview/{kat}") // 고양이 인기도순 보기
+    @GetMapping("recommendCatView/{kat}") // 고양이 인기도순 보기
     public String recommendCatView(Model model, @PathVariable String kat, @RequestParam(value = "num", required = false, defaultValue = "1") int num) {
         productService.recommendKatView(model, kat, num);
         return "product/recommendCatView";
     }
 
-    @GetMapping("priceallview") // 모든 상품 가격순 보기
+    @GetMapping("priceAllView") // 모든 상품 가격순 보기
     public String priceAllView(Model model, @RequestParam(value = "num", required = false, defaultValue = "1") int num) {
         productService.priceAllView(model, num);
         return "product/priceAllView";
     }
 
-    @GetMapping("pricedogview/{kat}") // 강아지 가격순 보기
+    @GetMapping("priceDogView/{kat}") // 강아지 가격순 보기
     public String priceDogView(Model model, @PathVariable String kat, @RequestParam(value = "num", required = false, defaultValue = "1") int num) {
         productService.priceKatView(model, kat, num);
         return "product/priceDogView";
     }
 
-    @GetMapping("pricecatview/{kat}") // 고양이 가격순 보기
+    @GetMapping("priceCatView/{kat}") // 고양이 가격순 보기
     public String priceCatView(Model model, @PathVariable String kat, @RequestParam(value = "num", required = false, defaultValue = "1") int num) {
         productService.priceKatView(model, kat, num);
         return "product/priceCatView";
     }
 
-    @GetMapping("scoreallview")
+    @GetMapping("scoreAllView")
     public String scoreAllView(Model model, @RequestParam(value = "num", required = false, defaultValue = "1") int num) {
         productService.scoreAllView(model, num);
         return "product/scoreAllView";
     }
 
-    @GetMapping("productdetail/{productId}/{productCategory}/{productName}") // 상품 상세 보기
+    @GetMapping("productDetail/{productId}/{productCategory}/{productName}") // 상품 상세 보기
     public String productDetail(Model model, @PathVariable String productId, @PathVariable String productCategory, @PathVariable String productName, @RequestParam(value = "num", required = false, defaultValue = "1") int num) {
         productService.relativeProduct(model, productCategory, productName, num);
         System.out.println("ps.relativeProduct 성공");

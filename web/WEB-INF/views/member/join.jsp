@@ -27,9 +27,8 @@
         .content .aside {
             display: flex;
             order: 1;
-            margin: auto;
             width: 1200px;
-            margin-bottom: 15px;
+            margin: auto auto 15px;
         }
 
 
@@ -217,7 +216,7 @@
             <form class="form" id="fo" method="post">
                 <br>
                 <h3>회 원 가 입</h3>
-                <hr style="0; height: 2px; background: #00264d">
+                <hr style=" height: 2px; background: #00264d">
                 <br>
                 <div>
                     <label><b>이름</b></label> &nbsp; &nbsp;

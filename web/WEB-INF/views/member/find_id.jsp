@@ -24,9 +24,8 @@
         .content .aside {
             display: flex;
             order: 1;
-            margin: auto;
             width: 800px;
-            margin-bottom: 20px;
+            margin: auto auto 20px;
         }
 
 
@@ -80,7 +79,7 @@
             <form class="form" method="post">
                 <br><br>
                 <h3>아이디 찾기 검색 결과</h3><br>
-                <hr style="0; height: 2px; background: #00264d">
+                <hr style=" height: 2px; background: #00264d">
 
 
                 <h5>아이디: <b>${id }</b></h5><br>

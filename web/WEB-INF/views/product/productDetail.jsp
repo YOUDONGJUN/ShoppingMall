@@ -38,7 +38,7 @@
             document.getElementById("qna").style.display = "block";
         }
 
-        function movepage(page) { // 페이지 이동
+        function movePage(page) { // 페이지 이동
             window.document.location.href = page;
             return;
         }
@@ -92,10 +92,8 @@
         .content .aside {
             display: flex;
             order: 1;
-            margin: auto;
             width: 1200px;
-            margin-top: 30px;
-            margin-bottom: 50px;
+            margin: 30px auto 50px;
         }
 
         .aside .primg {
@@ -153,7 +151,7 @@
                 <%
                     if (session.getAttribute("loginUser") != null) {
                 %>
-                <input type="button" value="+" onclick="#"><br>
+                <input type="button" value="+" ><br>
                 <%
                 } else {
                 %>
@@ -165,7 +163,7 @@
                                                       onclick='prdCnt("minus")'> <span id="productCnt">1</span> <input
                     type="button" value="+" onclick='prdCnt("plus")'><br>
                 <br> <input type="button" value="장바구니 담기" onclick="insertCart()">
-                <input type="button" value="바로 구매" onclick="#"> <br>
+                <input type="button" value="바로 구매"> <br>
                 <br>
                 <br>
             </div>
@@ -183,7 +181,7 @@
                 <c:forEach var="relPro" items="${relPro}">
                     <tr>
                         <td rowspan="2"><a
-                                href="${contextPath }/com.bit.product/productdetail/${relPro.productId }/${relPro.productCategory }/${relPro.productName}">
+                                href="${contextPath }/com.bit.product/productDetail/${relPro.productId }/${relPro.productCategory }/${relPro.productName}">
                             <div class="pr"
                                  style="text-align: center; background: #f5f5f5; margin-left: 10px; width: 95%;">
                                 <br> <img alt="이미지가 없습니다" width="100px" height="100px"
@@ -245,7 +243,7 @@
         <div>
             <table border="1">
                 <c:forEach var="rev" items="${review}">
-                    <a href='javascript:void(0);' onclick="#">
+                    <a href='javascript:void(0);'>
                         <tr>
                             <td><img alt="이미지가 없습니다" width="100px" height="100px"
                                      src="${pageContext.request.contextPath}/resources/img/${rev.productFile1 }.jpg">
@@ -273,7 +271,7 @@
             </table>
             <c:forEach var="num" begin="1" end="${repeat }">
                 <a
-                        href="${contextPath }/com.bit.product/productdetail/${productDetail.productId }/${productDetail.productCategory }/${productDetail.productName }?num=${num}">${num }
+                        href="${contextPath }/com.bit.product/productDetail/${productDetail.productId }/${productDetail.productCategory }/${productDetail.productName }?num=${num}">${num }
                     &nbsp;</a>
             </c:forEach>
         </div>

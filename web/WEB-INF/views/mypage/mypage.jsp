@@ -25,18 +25,15 @@
         .content .profile {
             width: 400px;
             padding: 30px 10px;
-            margin: auto;
-            margin-top: 10px;
-            margin-bottom: 15px;
+            margin: 10px auto 15px;
             border: 1px solid #00264d;
         }
 
         .content .section1 {
             display: flex;
             order: 1;
-            margin: auto;
             width: 400px;
-            margin-bottom: 15px;
+            margin: auto auto 15px;
         }
 
         .section1 .order {

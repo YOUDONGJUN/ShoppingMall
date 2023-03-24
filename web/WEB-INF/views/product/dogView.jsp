@@ -15,7 +15,7 @@
             $("input:checkbox[id='all']").prop("checked", false);
         });
 
-        function movepage(page) { // 페이지 이동
+        function movePage(page) { // 페이지 이동
             window.document.location.href = page;
             return;
         }
@@ -89,11 +89,11 @@
                 <h6><b>수제간식</b></h6>
                 <hr style="border-color:white;">
                 <input type="checkbox" id="all" name="categorie" value="all"
-                       onclick="movepage('http://localhost:8085/root/product/allview');"> All <br>
+                       onclick="movePage('http://localhost:8085/root/product/allView');"> All <br>
                 <input type="checkbox" id="dog" name="categorie" value="dog"
-                       onclick="movepage('http://localhost:8085/root/product/dogview/dog');"> 강아지 <br>
+                       onclick="movePage('http://localhost:8085/root/product/dogView/dog');"> 강아지 <br>
                 <input type="checkbox" id="cat" name="categorie" value="cat"
-                       onclick="movepage('http://localhost:8085/root/product/catview/cat');"> 고양이 <br>
+                       onclick="movePage('http://localhost:8085/root/product/catView/cat');"> 고양이 <br>
             </div>
         </div>
         <div class="product">
@@ -101,16 +101,16 @@
             <h3>A L L</h3><br>
             <hr style="background: #00264d; height: 1px;">
             <br>
-            <a href="${contextPath }/product/recommenddogview/dog"> 인기도순 </a>&nbsp;&nbsp;｜&nbsp;&nbsp;
-            <a href="${contextPath }/product/pricedogview/dog"> 낮은가격순 </a>&nbsp;&nbsp;｜&nbsp;&nbsp;
-            <a href="${contextPath }/product/scoreallview"> 평점높은순 </a><br>
+            <a href="${contextPath }/product/recommendDogView/dog"> 인기도순 </a>&nbsp;&nbsp;｜&nbsp;&nbsp;
+            <a href="${contextPath }/product/priceDogView/dog"> 낮은가격순 </a>&nbsp;&nbsp;｜&nbsp;&nbsp;
+            <a href="${contextPath }/product/scoreAllView"> 평점높은순 </a><br>
             <br><br>
             <div id="product">
                 <table style="width: 100%; ">
                     <c:forEach var="dto" items="${product}">
                         <tr>
                             <td rowspan="2" style="width: 50%;">
-                                <a href="${contextPath }/com.bit.product/productdetail/${dto.productId}/${dto.productCategory}/${dto.productName}">
+                                <a href="${contextPath }/com.bit.product/productDetail/${dto.productId}/${dto.productCategory}/${dto.productName}">
                                     <div class="pr" style="background:#f5f5f5; margin-left:10px; width:95%;"><br>
                                         <img alt="이미지가 없습니다" width="100px" height="100px"
                                              src="${pageContext.request.contextPath}/resources/img/${dto.productName}.jpg">
@@ -128,7 +128,7 @@
             </div>
             <div id="paging">
                 <c:forEach var="num" begin="1" end="${repeat }">
-                    <a href="${contextPath }/product/dogview/dog?num=${num}">${num } &nbsp;</a>
+                    <a href="${contextPath }/product/dogView/dog?num=${num}">${num } &nbsp;</a>
                 </c:forEach>
             </div>
         </div>

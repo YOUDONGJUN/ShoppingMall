@@ -34,7 +34,7 @@
             <input type="hidden" name="originFileName" value="${personalData.imageFileName }">
             <div class="form-group">
                 <label for="writer">
-                    <b>제목</b>
+                    <b id="writer">제목</b>
                 </label>
             </div>
             <div class="form-group">

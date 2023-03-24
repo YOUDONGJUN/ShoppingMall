@@ -35,14 +35,14 @@
                 <label for="writer">
                     <b>제목</b>
                 </label>
-                <input class="form-control" type="text" size="30" name="title" value="${personalData.title}">
+                <input class="form-control" type="text" size="30" name="title" value="${personalData.title}" id="writer">
                 <hr>
             </div>
             <div class="form-group">
-                <label for="writer">
+                <label for="content">
                     <b>내용</b>
                 </label>
-                <textarea class="form-control" rows="5" cols="30" name="content">${personalData.content}</textarea>
+                <textarea class="form-control" rows="5" cols="30" name="content" id="content">${personalData.content}</textarea>
                 <hr>
                 <c:if test="${personalData.imageFileName != 'nan' }">
                     <img width="100px" height="100px" id="preview"

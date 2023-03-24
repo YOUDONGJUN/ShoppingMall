@@ -117,7 +117,7 @@
         <nav>
             <ul class="nav-left">
                 <li><a href="${contextPath}/index">HOME</a></li>
-                <li><a href="${contextPath}/product/allview">ALL</a></li>
+                <li><a href="${contextPath}/product/allView">ALL</a></li>
             </ul>
             <ul>
                 <li><a href="${contextPath}/myPage/myPage">MYPAGE</a></li>

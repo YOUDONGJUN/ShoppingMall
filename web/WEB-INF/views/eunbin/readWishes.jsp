@@ -74,7 +74,8 @@
     }
 
     /* Wish css */
-    .wishlistbox {
+
+    .wishListBox {
         overflow-y: scroll;
         height: 550px;
         width: 100%;
@@ -229,7 +230,7 @@
             <br><br>
             <h3>W I S H L I S T</h3><br>
             <hr>
-            <div class="wishlistbox">
+            <div class="wishListBox">
 
                 <c:if test="${userWishList.size() == 0 }">
                     <div class="width100 p-2 margin10px margin10px" style="background: #f5f5f5;">WISH 내역 없음</div>
@@ -262,7 +263,8 @@
                                                type="checkbox"
                                                value=${wishDto.wishId}
                                                        id="wishCheck"
-                                               onclick="getCheckboxValue(event)">
+                                               onclick="getCheckboxValue(event)"
+                                               id="flexCheckDefault">
                                         <label class="form-check-label" for="flexCheckDefault">
                                             상품 선택
                                         </label>
@@ -284,19 +286,19 @@
                 </button>
                 <button type="button"
                         class="btn btn-outline-secondary margin10px floatLeft"
-                        onclick="location.href='${contextPath }/com.bit.cart/insertUserCart?cartProductCounts=${orderDto.orderCounts}&
-                                cartProductId=${orderDto.orderProductId}&
-                                cartProductFile1=${orderDto.orderProductName}.jpg&
-                                cartProductPrice=${orderDto.totalPrice}" disabled>
+                        onclick="location.href=${contextPath }/com.bit.cart/insertUserCart?cartProductCounts=${orderDTO.orderCounts},
+                                cartProductId=${orderDTO.orderProductId},
+                                cartProductFile1=${orderDTO.orderProductName}.jpg,
+                                cartProductPrice=${orderDTO.totalPrice}" disabled>
                     장바구니 담기
                 </button><!-- 이미 구현된 기능임, 불필요 -->
                 <button type="button"
                         style="width: 300px;"
                         class="btn btn-outline-secondary margin10px floatRight"
-                        onclick="location.href='${contextPath }/com.bit.review/createReview?cartProductCounts=${orderDto.orderCounts}&
-                                cartProductId=${orderDto.orderProductId}&
-                                cartProductFile1=${orderDto.orderProductName}.jpg&
-                                cartProductPrice=${orderDto.totalPrice}'" disabled>
+                        onclick="location.href=${contextPath }/com.bit.review/createReview?cartProductCounts=${orderDTO.orderCounts},
+                                cartProductId=${orderDTO.orderProductId},
+                                cartProductFile1=${orderDTO.orderProductName}.jpg,
+                                cartProductPrice=${orderDTO.totalPrice}" disabled>
                     주문하기
                 </button><!-- 이미 구현된 기능임, 불필요 -->
             </div>

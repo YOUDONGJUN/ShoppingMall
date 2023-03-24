@@ -28,9 +28,8 @@
         .content .aside {
             display: flex;
             order: 1;
-            margin: auto;
             width: 800px;
-            margin-bottom: 20px;
+            margin: auto auto 20px;
         }
 
 
@@ -101,7 +100,7 @@
             <form class="form" action="${contextPath }/member/user_check" method="post">
                 <br><br>
                 <h3>L O G I N</h3><br>
-                <hr style="0; height: 2px; background: #00264d">
+                <hr style="height: 2px; background: #00264d">
 
 
                 <label><b>ID</b></label>&nbsp; &nbsp;

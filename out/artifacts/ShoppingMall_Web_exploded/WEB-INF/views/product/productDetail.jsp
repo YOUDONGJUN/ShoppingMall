@@ -38,17 +38,17 @@
             document.getElementById("qna").style.display = "block";
         }
 
-        function movepage(page) { // 페이지 이동
+        function movePage(page) { // 페이지 이동
             window.document.location.href = page;
             return;
         }
 
-        function qnaAView(questionId) { // 문의 글 누르면 답글 보이기
+        function qnaAnswerView(questionId) { // 문의 글 누르면 답글 보이기
             console.log(questionId)
             var test = {'questionId': questionId}
             var answer = document.getElementById('answer')
             $.ajax({
-                url: "${contextPath }/qnaaview",
+                url: "${contextPath }/qnaAnswerView",
                 type: "POST",
                 data: JSON.stringify(test),
                 contentType: "application/json; charset=utf-8",
@@ -68,7 +68,7 @@
             var productCounts = parseInt(productCnt);
             console.log(productCnt);
             console.log('${productDetail.productId}');
-            var hrefPage = "http://localhost:8085/root/product/insertcart/" + '${productDetail.productId}' + "/" + productCnt;
+            var hrefPage = "http://localhost:8080/root/product/insertCart/" + '${productDetail.productId}' + "/" + productCnt;
             window.document.location.href = hrefPage;
             return;
         }
@@ -92,10 +92,8 @@
         .content .aside {
             display: flex;
             order: 1;
-            margin: auto;
             width: 1200px;
-            margin-top: 30px;
-            margin-bottom: 50px;
+            margin: 30px auto 50px;
         }
 
         .aside .primg {
@@ -153,7 +151,7 @@
                 <%
                     if (session.getAttribute("loginUser") != null) {
                 %>
-                <input type="button" value="+" onclick="#"><br>
+                <input type="button" value="+" ><br>
                 <%
                 } else {
                 %>
@@ -165,7 +163,7 @@
                                                       onclick='prdCnt("minus")'> <span id="productCnt">1</span> <input
                     type="button" value="+" onclick='prdCnt("plus")'><br>
                 <br> <input type="button" value="장바구니 담기" onclick="insertCart()">
-                <input type="button" value="바로 구매" onclick="#"> <br>
+                <input type="button" value="바로 구매"> <br>
                 <br>
                 <br>
             </div>
@@ -183,7 +181,7 @@
                 <c:forEach var="relPro" items="${relPro}">
                     <tr>
                         <td rowspan="2"><a
-                                href="${contextPath }/com.bit.product/productdetail/${relPro.productId }/${relPro.productCategory }/${relPro.productName}">
+                                href="${contextPath }/com.bit.product/productDetail/${relPro.productId }/${relPro.productCategory }/${relPro.productName}">
                             <div class="pr"
                                  style="text-align: center; background: #f5f5f5; margin-left: 10px; width: 95%;">
                                 <br> <img alt="이미지가 없습니다" width="100px" height="100px"
@@ -245,7 +243,7 @@
         <div>
             <table border="1">
                 <c:forEach var="rev" items="${review}">
-                    <a href='javascript:void(0);' onclick="#">
+                    <a href='javascript:void(0);'>
                         <tr>
                             <td><img alt="이미지가 없습니다" width="100px" height="100px"
                                      src="${pageContext.request.contextPath}/resources/img/${rev.productFile1 }.jpg">
@@ -273,7 +271,7 @@
             </table>
             <c:forEach var="num" begin="1" end="${repeat }">
                 <a
-                        href="${contextPath }/com.bit.product/productdetail/${productDetail.productId }/${productDetail.productCategory }/${productDetail.productName }?num=${num}">${num }
+                        href="${contextPath }/com.bit.product/productDetail/${productDetail.productId }/${productDetail.productCategory }/${productDetail.productName }?num=${num}">${num }
                     &nbsp;</a>
             </c:forEach>
         </div>
@@ -306,7 +304,7 @@
                 <td><span><b>${productDetail.productName }</b></span><br>
                     <br> <span><h5>문의 내용</h5></span>
                     <form
-                            action="${contextPath }/com.bit.product/addqnaq/${productDetail.productId }/${productDetail.productCategory }/${productDetail.productName }"
+                            action="${contextPath }/com.bit.product/addQnaQuestion/${productDetail.productId }/${productDetail.productCategory }/${productDetail.productName }"
                             method="post">
 							<textarea class="form-control" rows="5" cols="20"
                                       style="margin-left: 60px;" name="questionContent"></textarea>
@@ -318,15 +316,15 @@
             </table>
         </div>
         <br>
-        <c:forEach var="qnaq" items="${qnaq}">
+        <c:forEach var="qnaQuestion" items="${qnaQuestion}">
             <a href='javascript:void(0);'
-               onclick="qnaAView('${qnaq.questionId}');">
+               onclick="qnaAnswerView('${qnaQuestion.questionId}');">
                 <table class="table">
                     <tr style="margin: -10px;">
                         <td>문의</td>
-                        <td>작성자 : ${qnaq.questionWriterId }</td>
-                        <td>내용 : ${qnaq.questionContent }</td>
-                        <td>질문 생성 날짜 : ${qnaq.questionCreateDate }</td>
+                        <td>작성자 : ${qnaQuestion.questionWriterId }</td>
+                        <td>내용 : ${qnaQuestion.questionContent }</td>
+                        <td>질문 생성 날짜 : ${qnaQuestion.questionCreateDate }</td>
                     </tr>
                     <tr id="answer">
                     </tr>

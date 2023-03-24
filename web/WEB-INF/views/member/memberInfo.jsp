@@ -23,16 +23,16 @@
             <th>이메일</th>
             <th>전화번호</th>
         </tr>
-        <c:forEach var="dto" items="${memberList}">
+        <c:forEach var="DTO" items="${memberList}">
             <tr>
                 <td>
-                    <a href="${contextPath }/member/info?memberId=${dto.memberId }">${dto.memberId }</a>
+                    <a href="${contextPath }/member/info?memberId=${dto.memberId }">${DTO.memberId }</a>
                 </td>
-                <td>${dto.memberPassword }</td>
-                <td>${dto.memberAddress }</td>
-                <td>${dto.memberName }</td>
-                <td>${dto.memberEmail }</td>
-                <td>${dto.memberPhone }</td>
+                <td>${DTO.memberPassword }</td>
+                <td>${DTO.memberAddress }</td>
+                <td>${DTO.memberName }</td>
+                <td>${DTO.memberEmail }</td>
+                <td>${DTO.memberPhone }</td>
             </tr>
         </c:forEach>
     </table>

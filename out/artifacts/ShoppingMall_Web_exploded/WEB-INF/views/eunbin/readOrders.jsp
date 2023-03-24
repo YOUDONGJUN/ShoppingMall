@@ -31,9 +31,8 @@
     .content .aside {
         display: flex;
         order: 1;
-        margin: auto;
         width: 1200px;
-        margin-bottom: 15px;
+        margin: auto auto 15px;
     }
 
     .aside .menu {
@@ -75,7 +74,7 @@
 
     /* ORDER css */
 
-    .orderbox {
+    .orderBox {
         overflow-y: scroll;
         height: 400px;
         width: 100%;
@@ -171,7 +170,7 @@
             <ul>
                 <li>
                     <div class="menu-nav">
-                        <a class="nav-link" href="${contextPath }/mypage/readOrders">
+                        <a class="nav-link" href="${contextPath }/myPage/readOrders">
                             <div class="p">
                                 <div class="p-2">
                                     <b>Order</b>
@@ -195,7 +194,7 @@
                 </li>
                 <li>
                     <div class="menu-nav">
-                        <a class="nav-link" href="${contextPath }/mypage/readWishes">
+                        <a class="nav-link" href="${contextPath }/myPage/readWishes">
                             <div class="p">
                                 <div class="p-2">
                                     <b>Wishlist</b>
@@ -207,7 +206,7 @@
                 </li>
                 <li>
                     <div class="menu-nav">
-                        <a class="nav-link" href="${contextPath }/mypage/readMileage">
+                        <a class="nav-link" href="${contextPath }/myPage/readMileage">
                             <div class="p">
                                 <div class="p-2">
                                     <b>Mileage</b>
@@ -284,56 +283,55 @@
             <hr style="border: 1px solid #00264d; ">
 
 
-            <div class="orderbox">
+            <div class="orderBox">
                 <c:if test="${userOrderList.size() == 0 }">
                     <div class="d-flex p-3 alignItemsFlexStart" style="background:#f5f5f5;">주문내역 없음</div>
                 </c:if>
-                <c:forEach var="orderDto" items="${userOrderList }" varStatus="status">
-                <c:set var="statusIndex" value="${status.index }"/>
+                <c:forEach var="orderDTO" items="${userOrderList }" varStatus="status">
+                    <c:set var="statusIndex" value="${status.index }"/>
 
-                <div class="width100 p-2 margin10px margin10px">
-                    <div class="width100 p-2 margin10px borderTopBottom positionRelative"
-                         style="text-align: left;">
-                        <sapn>주문번호</sapn> &nbsp; &nbsp; <span>${orderDto.orderId }</span>
-                        <span style="margin-right: 10px; float:right;">&nbsp;&nbsp;&nbsp;${orderDto.orderCreateDate }</span>
-                        <sapn style="position: relative; float:right;">주문일자</sapn>
-                    </div>
+                    <div class="width100 p-2 margin10px margin10px">
+                        <div class="width100 p-2 margin10px borderTopBottom positionRelative"
+                             style="text-align: left;">
+                            <sapn>주문번호</sapn> &nbsp; &nbsp; <span>${orderDTO.orderId }</span>
+                            <span style="margin-right: 10px; float:right;">&nbsp;&nbsp;&nbsp;${orderDTO.orderCreateDate }</span>
+                            <sapn style="position: relative; float:right;">주문일자</sapn>
+                        </div>
 
-                    <div style="color: black; position: relative; min-width: 700px"
-                         class="d-flex p-3  text-white alignItemsFlexStart">
-                        <div class="width50 p-2  minHeight234px maxHeight234px">
-                            <div style="height: 100%;">
-                                <img class="card-img-top minWidth300px maxHeight234px"
-                                     src="<tags:url value='/resources/img/${orderDto.orderProductName}.jpg  '/>"
-                                     alt="Card image">
+                        <div style="color: black; position: relative; min-width: 700px"
+                             class="d-flex p-3  text-white alignItemsFlexStart">
+                            <div class="width50 p-2  minHeight234px maxHeight234px">
+                                <div style="height: 100%;">
+                                    <img class="card-img-top minWidth300px maxHeight234px"
+                                         src="<tags:url value='/resources/img/${orderDTO.orderProductName}.jpg  '/>"
+                                         alt="Card image">
+                                </div>
+                            </div>
+                            <div style="width : 50% " ; position: relative; text-align: left; class="p-2">
+                                <div class="d-flex flex-column" style="padding-top:20px; padding-left: 20px; ">
+                                    <div><b>상품명</b> : &nbsp;${orderDTO.orderProductName }</div>
+                                    <br>
+                                    <div><b>수 량</b> : &nbsp; ${orderDTO.orderCounts }</div>
+                                    <br>
+                                    <div><b>가 격</b> : &nbsp; ${orderDTO.totalPrice }</div>
+                                    <br>
+                                    <div style="color: #0066cc">
+                                        <b>배송 상태 &nbsp; - &nbsp; ${deliveryStateList[status.index]} </b>
+                                    </div>
+                                    <br>
+                                    <button
+                                            onclick="location.href='${contextPath }/com.bit.review/createReview?orderProductId=${orderDTO.orderProductId}&orderProductName=${orderDTO.orderProductName }'"
+                                            type="button" class="btn btn-outline-secondary width300px">
+                                        상품 후기 작성 <a href="${contextPath }/review/createReview"></a>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                        <div style="color: black; position: relative; text-align: left;  class=" width50 p-2
-                        ">
-                        <div class="d-flex flex-column" style="padding-top:20px; padding-left: 20px; ">
-                            <div><b>상품명</b> : &nbsp;${orderDto.orderProductName }</div>
-                            <br>
-                            <div><b>수 량</b> : &nbsp; ${orderDto.orderCounts }</div>
-                            <br>
-                            <div><b>가 격</b> : &nbsp; ${orderDto.totalPrice }</div>
-                            <br>
-                            <div style="color: #0066cc">
-                                <b>배송 상태 &nbsp; - &nbsp; ${deliveryStateList[status.index]} </b>
-                            </div>
-                            <br>
-                            <button
-                                    onclick="location.href='${contextPath }/com.bit.review/createReview?orderProductId=${orderDto.orderProductId}&orderProductName=${orderDto.orderProductName }'"
-                                    type="button" class="btn btn-outline-secondary width300px">
-                                상품 후기 작성 <a href="${contextPath }/review/createReview"></a>
-                            </button>
-                        </div>
                     </div>
-                </div>
+                </c:forEach>
             </div>
-            </c:forEach>
         </div>
     </div>
-</div>
 </div>
 <c:import url="../default/footer.jsp"/>
 </body>

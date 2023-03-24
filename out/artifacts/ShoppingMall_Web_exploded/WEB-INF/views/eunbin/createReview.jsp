@@ -174,7 +174,7 @@
                 <div class="p-2 ">
                     <div class="form-group" style="width: 95%; margin-left: 25px;">
                         <label for="content">
-                            <b>상세 리뷰</b><br>
+                            <b id="content">상세 리뷰</b><br>
                         </label>
                         <textarea class="form-control" name="content" rows="8"
                                   id="comment" placeholder="리뷰를 작성해주세요"

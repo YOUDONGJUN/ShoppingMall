@@ -33,7 +33,7 @@
             <table border="1" style="width:300px;">
                 <tr>
                     <td>
-                        <input size="30" type="text" name="mameberId" placeholder="input id"><br>
+                        <input size="30" type="text" name="memberId" placeholder="input id"><br>
                         <input size="30" type="password" name="memberPassword" placeholder="input password"><br>
                         <input size="30" type="password" name="pw1" placeholder="input password"><br>
                         <input size="30" type="text" name="memberName" placeholder="input name"><br>

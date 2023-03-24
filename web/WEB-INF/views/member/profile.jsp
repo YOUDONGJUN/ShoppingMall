@@ -56,9 +56,8 @@
         .content .aside {
             display: flex;
             order: 1;
-            margin: auto;
             width: 1200px;
-            margin-bottom: 15px;
+            margin: auto auto 15px;
         }
 
         .aside .menu {

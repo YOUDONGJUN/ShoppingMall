@@ -32,9 +32,8 @@
     .content .aside {
         display: flex;
         order: 1;
-        margin: auto;
         width: 1200px;
-        margin-bottom: 15px;
+        margin: auto auto 15px;
     }
 
     .aside .menu {
@@ -74,7 +73,7 @@
     }
 
     /* Mileage css */
-    .mileagebox {
+    .mileageBox {
         overflow-y: scroll;
         height: 550px;
         width: 100%;
@@ -214,7 +213,7 @@
             <br><br>
             <h3>M L I E A G E</h3><br>
             <hr>
-            <div class="mlieagebox">
+            <div class="mileageBox">
 
                 <div class="d-flex p-3 alignItemsFlexStart" style="background: #b3e0ff; ">
                     <div style="width: 48%; text-align:left; border-right: 1px dashed ; color: #00264d; " class="p-2">
@@ -255,13 +254,13 @@
                             <div class="d-flex p-3 bg-secondary text-white alignItemsFlexStart">마일리지 내역 없음</div>
                         </c:if>
                         <div class="width90 margin10px">
-                            <c:forEach var="mileageDto" items="${userMileageList }" varStatus="status">
+                            <c:forEach var="mileageDTO" items="${userMileageList }" varStatus="status">
                                 <c:set var="statusIndex" value="${status.index }"/>
                                 <tr class="width100 overflowX">
-                                    <td style="min-width:120px">${mileageDto.orderCreateDate }</td>
+                                    <td style="min-width:120px">${mileageDTO.orderCreateDate }</td>
                                     <td style="min-width:100px">1</td>
-                                    <td>${mileageDto.orderId }</td>
-                                    <td style="min-width:160px">${mileageDto.mileageDetails }</td>
+                                    <td>${mileageDTO.orderId }</td>
+                                    <td style="min-width:160px">${mileageDTO.mileageDetails }</td>
                                 </tr>
                             </c:forEach>
                         </div>

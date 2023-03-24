@@ -9,7 +9,7 @@
         <id property="writeNo" column="write_no"/>
         <result property="title" column="title"/>
         <result property="content" column="content"/>
-        <result property="saveDate" column="savedate"/>
+        <result property="saveDate" column="saveDate"/>
         <result property="hit" column="hit"/>
         <result property="imageFileName" column="image_file_name"/>
         <result property="id" column="id"/>

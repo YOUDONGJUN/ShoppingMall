@@ -25,18 +25,15 @@
         .content .profile {
             width: 400px;
             padding: 30px 10px;
-            margin: auto;
-            margin-top: 10px;
-            margin-bottom: 15px;
+            margin: 10px auto 15px;
             border: 1px solid #00264d;
         }
 
         .content .section1 {
             display: flex;
             order: 1;
-            margin: auto;
             width: 400px;
-            margin-bottom: 15px;
+            margin: auto auto 15px;
         }
 
         .section1 .order {
@@ -64,7 +61,7 @@
             width: 400px;
         }
 
-        .section2 .myboard {
+        .section2 .myBoard {
             order: 1;
             border: 1px solid #00264d;
             width: 48%;
@@ -127,14 +124,14 @@
     </div>
 
     <div class="section2">
-        <nav class="myboard">
-            <a href="${contextPath}/board/myboard">
+        <nav class="myBoard">
+            <a href="${contextPath}/board/myBoard">
                 <h4><b>My Board</b></h4>
                 <h6>게시물 관리</h6>
             </a>
         </nav>
         <nav class="mileage">
-            <a href="${contextPath}/mypage/readMileage">
+            <a href="${contextPath}/myPage/readMileage">
                 <h4><b>Mileage</b></h4>
                 <h6>적립금</h6>
             </a>

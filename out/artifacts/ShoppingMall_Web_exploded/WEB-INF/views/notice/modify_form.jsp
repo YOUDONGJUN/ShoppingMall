@@ -49,26 +49,29 @@
             <form action="${contextPath }/notice/modify" enctype="multipart/form-data" method="post">
                 <input type="hidden" name="notice_id" value="${personalData.noticeId }">
                 <input type="hidden" name="originFileName" value="${personalData.noticeImageFileName }">
+
                 <div class="form-group">
-                    <label for="writer">
+                    <label for="title">
                         <b>Title</b>
                     </label>
                     <input class="form-control" type="text" size="30" name="notice_title"
-                           value="${personalData.noticeTitle }">
+                           value="${personalData.noticeTitle }" id="title">
                     <hr>
                 </div>
+
                 <div class="form-group">
-                    <label for="writer">
+                    <label for="content">
                         <b>Content</b>
                     </label>
                     <textarea class="form-control" rows="10" cols="30"
-                              name="notice_content">${personalData.noticeContent}</textarea>
+                              name="notice_content" id="content">${personalData.noticeContent}</textarea>
                     <hr>
                     <c:if test="${personalData.noticeImageFileName != 'nan' }">
                         <img width="200px" height="200px" id="preview"
                              src="${contextPath }/notice/download?noticeImageFileName=${personalData.noticeImageFileName}">
                     </c:if>
                 </div>
+
                 <div class="custom-file">
                     <input type="file" name="notice_image_file_name" onchange="readURL(this)" id="customFile">
                     <label class="custom-file-label" for="customFile">Choose file</label>
