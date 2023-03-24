@@ -18,17 +18,17 @@ public interface ProductMapper {
 
     public int selectProductCount(); // 상품 총 개수 가져오기
 
-    public ArrayList<ProductDTO> selectAllCategorieList(@Param("k") String kat, @Param("s") int start, @Param("e") int end); // 선택된 카테고리 모두 가져오기
+    public ArrayList<ProductDTO> selectAllCategoriesList(@Param("k") String kat, @Param("s") int start, @Param("e") int end); // 선택된 카테고리 모두 가져오기
 
-    public int selectCategorieCount(String kat); // 선택된 카테고리 총 개수 가져오기
+    public int selectCategoriesCount(String kat); // 선택된 카테고리 총 개수 가져오기
 
     public ArrayList<ProductDTO> selectRecommendAllProductList(@Param("s") int start, @Param("e") int end); // 모든 상품 인기도순 가져오기
 
-    public ArrayList<ProductDTO> selectRecommendAllCategorieList(@Param("k") String kat, @Param("s") int start, @Param("e") int end); // 카테고리 인기도순 가져오기
+    public ArrayList<ProductDTO> selectRecommendAllCategoriesList(@Param("k") String kat, @Param("s") int start, @Param("e") int end); // 카테고리 인기도순 가져오기
 
     public ArrayList<ProductDTO> selectPriceAllProductList(@Param("s") int start, @Param("e") int end); // 모든 상품 가격순 가져오기
 
-    public ArrayList<ProductDTO> selectPriceAllCategorieList(@Param("k") String kat, @Param("s") int start, @Param("e") int end); // 카테고리 가격순 가져오기
+    public ArrayList<ProductDTO> selectPriceAllCategoriesList(@Param("k") String kat, @Param("s") int start, @Param("e") int end); // 카테고리 가격순 가져오기
 
     public ArrayList<ProductDTO> selectScoreAllProductList(@Param("s") int start, @Param("e") int end);
 

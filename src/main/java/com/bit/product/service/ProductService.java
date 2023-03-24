@@ -32,7 +32,7 @@ public class ProductService {
     }
 
     public void katView(Model model, String kat, int num) { // 카테고리 보기
-        int allCount = productMapper.selectCategorieCount(kat);
+        int allCount = productMapper.selectCategoriesCount(kat);
         int pageLetter = 6;
         int repeat = allCount / pageLetter;
         if (allCount % pageLetter != 0) {
@@ -41,7 +41,7 @@ public class ProductService {
         int end = num * pageLetter;
         int start = end + 1 - pageLetter;
         model.addAttribute("repeat", repeat);
-        model.addAttribute("product", productMapper.selectAllCategorieList(kat, start, end));
+        model.addAttribute("product", productMapper.selectAllCategoriesList(kat, start, end));
     }
 
     public void recommendAllView(Model model, int num) { // 모든 상품 인기도순 보기
@@ -58,7 +58,7 @@ public class ProductService {
     }
 
     public void recommendKatView(Model model, String kat, int num) { // 카테고리 인기도순 보기
-        int allCount = productMapper.selectCategorieCount(kat);
+        int allCount = productMapper.selectCategoriesCount(kat);
         int pageLetter = 6;
         int repeat = allCount / pageLetter;
         if (allCount % pageLetter != 0) {
@@ -67,7 +67,7 @@ public class ProductService {
         int end = num * pageLetter;
         int start = end + 1 - pageLetter;
         model.addAttribute("repeat", repeat);
-        model.addAttribute("product", productMapper.selectRecommendAllCategorieList(kat, start, end));
+        model.addAttribute("product", productMapper.selectRecommendAllCategoriesList(kat, start, end));
     }
 
     public void priceAllView(Model model, int num) { // 모든 상품 가격순 보기
@@ -84,7 +84,7 @@ public class ProductService {
     }
 
     public void priceKatView(Model model, String kat, int num) { // 카테고리 가격순 보기
-        int allCount = productMapper.selectCategorieCount(kat);
+        int allCount = productMapper.selectCategoriesCount(kat);
         int pageLetter = 6;
         int repeat = allCount / pageLetter;
         if (allCount % pageLetter != 0) {
@@ -93,7 +93,7 @@ public class ProductService {
         int end = num * pageLetter;
         int start = end + 1 - pageLetter;
         model.addAttribute("repeat", repeat);
-        model.addAttribute("product", productMapper.selectPriceAllCategorieList(kat, start, end));
+        model.addAttribute("product", productMapper.selectPriceAllCategoriesList(kat, start, end));
     }
 
     public void scoreAllView(Model model, int num) {

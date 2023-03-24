@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//com.bit.mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.OrderMapper">
+
+    <resultMap id="order" type="OrderDTO">
+        <id property="orderId" column="order_id"/>
+        <result property="buyerIdx" column="buyer_idx"/>
+        <result property="orderProductId" column="order_product_id"/>
+        <result property="orderCounts" column="order_counts"/>
+        <result property="orderCreateDate" column="order_create_date"/>
+        <result property="totalPrice" column="total_price"/>
+        <result property="payment" column="payment"/>
+        <result property="orderProductName" column="order_product_name"/>
+    </resultMap>
+
+    <resultMap id="order_details" type="OrderDetailsDTO">
+        <id property="orderId" column="order_id"/>
+        <result property="deliveryRequirement" column="delivery_requirement"/>
+        <result property="deliveryAddress" column="delivery_address"/>
+        <result property="sellerPhone" column="seller_phone"/>
+        <result property="deliveryStatus" column="delivery_status"/>
+    </resultMap>
+
+    <!-- readOrders.jsp -->
+    <select id="getUserOrdersDeliveryStates" resultType="String">
+        select delivery_status
+        from order_details
+        where buyer_idx = #{memberIdx}
+    </select>
+
+    <select id="getUserOrders" resultMap="order">
+        select *
+        from order
+        where buyer_idx = #{memberIdx}
+    </select>
+
+
+</mapper>
+
+
+
+

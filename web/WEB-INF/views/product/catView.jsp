@@ -42,7 +42,7 @@
             width: 1200px;
         }
 
-        .aside .categorie {
+        .aside .category {
             order: 1;
             width: 18%;
             padding-top: 150px;
@@ -50,7 +50,7 @@
             color: white;
         }
 
-        .categorie .ka {
+        .category .ka {
             /* border: 1px solid;  */
             width: 95px;
             margin: auto;
@@ -83,17 +83,17 @@
 <c:import url="../default/header.jsp"/>
 <div class="content">
     <div class="aside">
-        <div class="categorie">
+        <div class="category">
             <h4><b>카테고리</b></h4><br><br>
             <div class="ka">
                 <h6><b>수제간식</b></h6>
                 <hr style="border-color:white;">
-                <input type="checkbox" id="all" name="categorie" value="all"
-                       onclick="movePage('http://localhost:8085/root/product/allView');"> All <br>
-                <input type="checkbox" id="dog" name="categorie" value="dog"
-                       onclick="movePage('http://localhost:8085/root/product/dogView/dog');"> 강아지 <br>
-                <input type="checkbox" id="cat" name="categorie" value="cat"
-                       onclick="movePage('http://localhost:8085/root/product/catView/cat');"> 고양이 <br>
+                <input type="checkbox" id="all" name="category" value="all"
+                       onclick="movePage('http://localhost:8080/product/allView');"> All <br>
+                <input type="checkbox" id="dog" name="category" value="dog"
+                       onclick="movePage('http://localhost:8080/product/dogView/dog');"> 강아지 <br>
+                <input type="checkbox" id="cat" name="category" value="cat"
+                       onclick="movePage('http://localhost:8080/product/catView/cat');"> 고양이 <br>
             </div>
         </div>
         <div class="product">

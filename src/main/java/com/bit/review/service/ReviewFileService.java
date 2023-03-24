@@ -18,12 +18,10 @@ public class ReviewFileService {
         String message = null; //num = mapper.reviewSave(rDto);
         if (num == 1) {
             message = "<script>alert('새 상품평을 성공적으로 추가 했습니다');";
-            //com.bit.message += "location.href='/root/com.bit.board/boardAllList';</script>";
             message +=
                     "location.href='" + request.getContextPath() + "/myPage/readOrders';</script>";
         } else {
             message = "<script>alert('새 상품평 등록에 실패했습니다.');";
-            //com.bit.message += "location.href='/root/com.bit.board/writeForm';</script>";
             message +=
                     "location.href='" + request.getContextPath() + "/myPage/readOrders';</script>";
         }

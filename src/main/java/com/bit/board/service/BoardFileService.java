@@ -17,12 +17,10 @@ public class BoardFileService {
         String message = null;
         if (num == 1) {
             message = "<script>alert('새글이 추가 되었습니다');";
-            //com.bit.message += "location.href='/root/com.bit.board/boardAllList';</script>";
             message +=
                     "location.href='" + request.getContextPath() + "/board/boardAllList';</script>";
         } else {
             message = "<script>alert('문제가 발생했습니다!!!');";
-            //com.bit.message += "location.href='/root/com.bit.board/writeForm';</script>";
             message +=
                     "location.href='" + request.getContextPath() + "/board/writeForm';</script>";
         }

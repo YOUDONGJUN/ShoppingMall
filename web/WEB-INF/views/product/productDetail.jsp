@@ -68,7 +68,7 @@
             var productCounts = parseInt(productCnt);
             console.log(productCnt);
             console.log('${productDetail.productId}');
-            var hrefPage = "http://localhost:8080/root/product/insertCart/" + '${productDetail.productId}' + "/" + productCnt;
+            var hrefPage = "http://localhost:8080/product/insertCart/" + '${productDetail.productId}' + "/" + productCnt;
             window.document.location.href = hrefPage;
             return;
         }

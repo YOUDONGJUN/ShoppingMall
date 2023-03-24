@@ -23,7 +23,7 @@ public class MemberInterceptor extends HandlerInterceptorAdapter
             //response.sendRedirect("login");
             response.setContentType("text/html; charset=utf-8");//클라이언트로 전달할 타입
             PrintWriter out = response.getWriter();
-            out.print("<script>alert('로그인하지 않은 유저는 접근할 수 없는 페이지입니다.'); location.href='/root/com.bit.member/login';</script>");
+            out.print("<script>alert('로그인하지 않은 유저는 접근할 수 없는 페이지입니다.'); location.href='com.bit.member/login';</script>");
             return false;
         }
         return true;

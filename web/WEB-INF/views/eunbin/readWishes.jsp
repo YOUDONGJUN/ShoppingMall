@@ -333,7 +333,7 @@
         set.forEach((wishId, index) => {
             var variables = {"wishId": wishId}
             $.ajax({
-                url: "/root/wish/deleteUserWishes",
+                url: "/wish/deleteUserWishes",
                 type: "POST",
                 data: JSON.stringify(variables),
                 contentType: "application/json; charset=utf-8",
