@@ -50,7 +50,7 @@ public interface ProductMapper {
 
     public QnaAnswerDTO selectQnaAnswerList(@Param("q") String questionId); // 답변 가져오기
 
-    public void insertQnaQuestion(com.bit.dto.QnaQuestionDTO qnaQuestionDTO); // 문의하기
+    public void insertQnaQuestion(com.bit.qna.dto.QnaQuestionDTO qnaQuestionDTO); // 문의하기
 
     public ArrayList<ProductDTO> selectRelativeProduct(@Param("p") String productId, @Param("k") String kat, @Param("s") int start, @Param("e") int end); // 관련 상품 가져오기
 

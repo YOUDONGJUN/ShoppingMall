@@ -1,9 +1,9 @@
 package com.bit.product.service;
 
 import com.bit.cart.dto.CartDTO;
-import com.bit.dto.QnaQuestionDTO;
 import com.bit.mybatis.product.ProductMapper;
 import com.bit.qna.dto.QnaAnswerDTO;
+import com.bit.qna.dto.QnaQuestionDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -159,20 +159,20 @@ public class ProductService {
     }
 
     public void insertQnaQuestion(String questionContent, HttpSession session, String productId) { // 문의하기
-        QnaQuestionDTO qnaQDTO = new QnaQuestionDTO();
+        QnaQuestionDTO qnaQuestionDTO = new QnaQuestionDTO();
         long time = System.currentTimeMillis();
         String memberId = (String) session.getAttribute("loginUser");
         String memberIdx = productMapper.selectMemberIdx(memberId);
         System.out.println("ps.insertQnaQuestion_memberId : " + memberId);
         System.out.println("ps.insertQnaQuestion_productPostId : " + productId);
-        qnaQDTO.setQuestionId(memberId + time);
-        qnaQDTO.setQuestionWriterId(memberIdx);
-        qnaQDTO.setProductPostId(productId);
-        qnaQDTO.setQuestionTitle("nan");
-        qnaQDTO.setQuestionContent(questionContent);
-        qnaQDTO.setQuestionCreateDate(new Date(System.currentTimeMillis()));
-        qnaQDTO.setQuestionViews(0);
-        productMapper.insertQnaQuestion(qnaQDTO);
+        qnaQuestionDTO.setQuestionId(memberId + time);
+        qnaQuestionDTO.setQuestionWriterId(memberIdx);
+        qnaQuestionDTO.setProductPostId(productId);
+        qnaQuestionDTO.setQuestionTitle("nan");
+        qnaQuestionDTO.setQuestionContent(questionContent);
+        qnaQuestionDTO.setQuestionCreateDate(new Date(System.currentTimeMillis()));
+        qnaQuestionDTO.setQuestionViews(0);
+        productMapper.insertQnaQuestion(qnaQuestionDTO);
     }
 
     public void relativeProduct(Model model, String kat, String productId, int num) {
