@@ -29,7 +29,6 @@
         </element>
       </element>
       <element id="javaee-facet-resources" facet="ShoppingMall/web/Web" />
-      <element id="javaee-facet-resources" facet="ShoppingMall/web/Web2" />
     </root>
   </artifact>
 </component>

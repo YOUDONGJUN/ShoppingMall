@@ -17,13 +17,13 @@
     <select id="getUserWishes" resultMap="wish">
         select *
         from wish
-        where buyer_idx = #{memberIdx}
+        where buyerIdx = #{memberIdx}
     </select>
 
     <delete id="deleteUserWishes">
         delete
         from wish
-        where wish_id = #{wishId}
+        where wishId = #{wishId}
     </delete>
 
 </mapper>

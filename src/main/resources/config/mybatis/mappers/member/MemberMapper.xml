@@ -22,7 +22,7 @@
     <select id="user_check" resultMap="member">
         select *
         from member
-        where member_id = #{memberId}
+        where memberId = #{memberId}
     </select>
 
     <select id="memberInfo" resultMap="member">
@@ -32,20 +32,20 @@
     <select id="profile" resultMap="member">
         select *
         from member
-        where member_id = #{userId}
+        where memberId = #{memberId}
     </select>
 
     <select id="info" resultMap="member">
         select *
         from member
-        where member_id = #{memberId}
+        where memberId = #{memberId}
     </select>
 
-    <insert id="register">
-        insert into member(member_idx, member_name, member_email, member_password, member_role,
-                           member_address, member_address2, member_create_date, member_mileage, member_point,
-                           member_id, member_phone,
-                           member_sessionId, member_limitTime)
+    <insert id="register" parameterType="memberDTO">
+        insert into member(memberIdx, memberName, memberEmail, memberPassword, memberRole,
+                           memberAddress, memberAddress2, memberCreateDate, memberMileage, memberPoint,
+                           memberId, memberPhone,
+                           memberSessionId, memberLimitTime)
         values (#{memberIdx}, #{memberName}, #{memberEmail}, #{memberPassword}, #{memberRole},
                 #{memberAddress}, #{memberAddress2}, #{memberCreateDate}, 0, 0, #{memberId}, #{memberPhone},
                 #{memberSessionId}, #{memberLimitTime})
@@ -53,56 +53,55 @@
 
     <update id="keepLogin">
         update member
-        set member_sessionId=#{memberSessionId},
-            member_limitTime=#{memberLimitTime}
+        set memberSessionId=#{memberSessionId},
+            memberLimitTime=#{memberLimitTime}
         where member_id = #{memberId}
     </update>
 
     <select id="getUserSessionId" resultMap="member">
         select *
         from member
-        where member_sessionId = #{memberSessionId}
+        where memberSessionId = #{memberSessionId}
     </select>
-
 
 
     <!-- 아이디 중복 확인 -->
     <select id="idCheck" resultType="int">
         select count(*)
         from member
-        where member_id = #{memberId}
+        where memberId = #{memberId}
     </select>
 
     <!-- 아이디 찾기 -->
     <select id="find_id" parameterType="String" resultType="String">
-        select member_id
+        select memberId
         from member
-        where member_email = #{memberEmail}
+        where memberEmail = #{memberEmail}
     </select>
 
     <!-- 비번 찾기 -->
     <select id="find_pw" parameterType="String" resultType="String">
-        select member_password
+        select memberPassword
         from member
-        where member_id = #{memberId}
+        where memberId = #{memberId}
     </select>
 
     <!-- 회원정보 수정-->
     <update id="modify">
         update member
-        set member_password=#{memberPassword},
-            member_phone=#{memberPhone},
-            member_email=#{memberEmail},
-            member_address=#{memberAddress},
-            member_address2=#{memberAddress2}
-        where member_id = #{memberId}
+        set memberPassword=#{memberPassword},
+            memberPhone=#{memberPhone},
+            memberEmail=#{memberEmail},
+            memberAddress=#{memberAddress},
+            memberAddress2=#{memberAddress2}
+        where memberId = #{memberId}
     </update>
 
     <!-- 회원 탈퇴 -->
     <delete id="delete">
         delete
         from member
-        where member_id = #{userId}
+        where memberId = #{userId}
     </delete>
 
 </mapper>

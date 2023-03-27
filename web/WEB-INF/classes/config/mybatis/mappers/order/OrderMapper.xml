@@ -26,15 +26,15 @@
 
     <!-- readOrders.jsp -->
     <select id="getUserOrdersDeliveryStates" resultType="String">
-        select delivery_status
+        select deliveryStatus
         from order_details
-        where buyer_idx = #{memberIdx}
+        where buyerIdx = #{memberIdx}
     </select>
 
     <select id="getUserOrders" resultMap="order">
         select *
         from order
-        where buyer_idx = #{memberIdx}
+        where buyerIdx = #{memberIdx}
     </select>
 
 

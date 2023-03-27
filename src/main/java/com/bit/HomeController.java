@@ -39,7 +39,7 @@ public class HomeController {
 
     @GetMapping("index")
     public String index() {
-        System.out.println("index 칸트롤러 실행");
+        System.out.println("index 컨트롤러 실행");
         return "index";
     }
 }

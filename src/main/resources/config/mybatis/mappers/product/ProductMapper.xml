@@ -96,7 +96,7 @@
     <select id="selectAllCategoriesList" resultMap="product">
         select B.*
         from (select rownum rn, A.*
-              from (select * from product where product_category = #{k}) A) B
+              from (select * from product where productCategory = #{k}) A) B
         where rn between #{s} and #{e}
     </select>
 
@@ -104,14 +104,14 @@
     <select id="selectCategoriesCount" resultType="Integer">
         select count(*)
         from product
-        where product_category = #{category}
+        where productCategory = #{category}
     </select>
 
     <!-- 모든 상품 인기도순 가져오기 -->
     <select id="selectRecommendAllProductList" resultMap="product">
         select B.*
         from (select rownum rn, A.*
-              from (select * from product order by product_recommend_counts desc) A) B
+              from (select * from product order by productRecommendCounts desc) A) B
         where rn between #{s} and #{e}
     </select>
 
@@ -119,7 +119,7 @@
     <select id="selectRecommendAllCategoriesList" resultMap="product">
         select B.*
         from (select rownum rn, A.*
-              from (select * from product where product_category = #{k} order by product_recommend_counts desc) A) B
+              from (select * from product where productCategory = #{k} order by productRecommendCounts desc) A) B
         where rn between #{s} and #{e}
     </select>
 
@@ -127,7 +127,7 @@
     <select id="selectPriceAllProductList" resultMap="product">
         select B.*
         from (select rownum rn, A.*
-              from (select * from product order by product_normal_price asc) A) B
+              from (select * from product order by productNormalPrice asc) A) B
         where rn between #{s} and #{e}
     </select>
 
@@ -135,7 +135,7 @@
     <select id="selectPriceAllCategoriesList" resultMap="product">
         select B.*
         from (select rownum rn, A.*
-              from (select * from product where product_category = #{k} order by product_normal_price asc) A) B
+              from (select * from product where productCategory = #{k} order by productNormalPrice asc) A) B
         where rn between #{s} and #{e}
     </select>
 
@@ -143,7 +143,7 @@
     <select id="selectScoreAllProductList" resultMap="product">
         select B.*
         from (select rownum rn, A.*
-              from (select * from product order by product_score desc) A) B
+              from (select * from product order by productScore desc) A) B
         where rn between #{s} and #{e}
     </select>
 
@@ -151,70 +151,70 @@
     <select id="selectAllProductDetail" resultMap="product">
         select *
         from product
-        where product_id = #{p}
+        where productId = #{p}
     </select>
 
     <!-- 평점 리스트 가져오기 -->
     <select id="selectAllReviewList" resultMap="review">
         select B.*
         from (select rownum rn, A.*
-              from (select * from review where PRODUCT_ID = #{p}) A) B
+              from (select * from review where productId = #{p}) A) B
         where rn between #{s} and #{e}
     </select>
 
     <!-- 평점 점수만 가져오기 -->
     <select id="selectProductScore" resultType="map">
-        select product_score
+        select productScore
         from review
-        where PRODUCT_POST_ID = #{p}
+        where productPostId = #{p}
     </select>
 
     <!-- 평점 개수 가져오기 -->
     <select id="selectScoreCount" resultType="Integer">
         select count(*)
         from review
-        where PRODUCT_ID = #{p}
+        where productId = #{p}
     </select>
 
     <!-- 관련 상품 개수 가져오기 -->
     <select id="selectRelProductCount" resultType="Integer">
         select count(*)
         from product
-        where product_category = #{k}
+        where productCategory = #{k}
     </select>
 
     <!-- postId 값 가져오기 -->
     <select id="selectPostId" resultType="String">
-        select PRODUCT_POST_ID
+        select productPostId
         from PRODUCT_POST
-        where PRODUCT_ID = #{p}
+        where productId = #{p}
     </select>
 
     <!-- 추천 기능 -->
     <update id="updateRecommendCounts">
         update product
-        set product_recommend_counts=product_recommend_counts + 1
-        where product_id = #{p}
+        set productRecommendCounts=productRecommendCounts + 1
+        where productId = #{p}
     </update>
 
     <!-- 문의 리스트 가져오기 -->
     <select id="selectAllQnaQuestionList" resultMap="qna_question">
         select *
         from qna_question
-        where product_post_id = #{p}
+        where productPostId = #{p}
     </select>
 
     <!-- 답변 가져오기 -->
     <select id="selectQnaAnswerList" resultMap="qna_answer">
         select *
         from qna_answer
-        where question_id = #{q}
+        where questionId = #{q}
     </select>
 
     <!-- 문의하기 -->
     <insert id="insertQnaQuestion">
-        insert into qna_question(question_id, question_writer_id, product_post_id, question_title, question_content,
-                                 question_create_date, question_views)
+        insert into qna_question(questionId, questionWriterId, productPostId, questionTitle, questionContent,
+                                 questionCreateDate, questionViews)
         values (#{questionId}, #{questionWriterId}, #{productPostId}, #{questionTitle}, #{questionContent},
                 #{questionCreateDate}, #{questionViews})
     </insert>
@@ -225,8 +225,8 @@
         from (select rownum rn, A.*
               from (select *
                     from product
-                    where product_category = #{k}
-                      and not product_id = #{p}) A) B
+                    where productCategory = #{k}
+                      and not productId = #{p}) A) B
         where rn between #{s} and #{e}
     </select>
 
@@ -234,66 +234,66 @@
     <select id="selectProductPost" resultMap="product_post">
         select *
         from PRODUCT_POST
-        where product_id = #{p}
+        where productId = #{p}
     </select>
 
     <!-- 장바구니 모두 가져오기 -->
     <select id="selectCart" resultMap="cart">
         select *
         from cart
-        where MEMBER_ID = #{x}
+        where memberId = #{x}
     </select>
 
     <!-- memberIdx 값 가져오기 -->
     <select id="selectMemberIdx" resultType="String">
-        select member_idx
+        select memberIdx
         from member
-        where member_id = #{m}
+        where memberIdx = #{m}
     </select>
 
     <select id="checkCart" resultType="Integer">
         select *
         from cart
-        where MEMBER_ID = #{x}
-          and CART_PRODUCT_ID = #{p}
+        where memberId = #{x}
+          and cartProductId = #{p}
     </select>
 
     <update id="updateCart">
         update CART
-        set CART_PRODUCT_COUNTS = CART_PRODUCT_COUNTS + #{c}
-        where MEMBER_ID = #{x}
-          and CART_PRODUCT_ID = #{p}
+        set cartProductCounts = cartProductCounts + #{c}
+        where memberId = #{x}
+          and cartProductId = #{p}
     </update>
 
     <delete id="deleteCart">
         delete
         from cart
-        where MEMBER_ID = #{x}
-          and CART_PRODUCT_ID = #{p}
+        where memberId = #{x}
+          and cartProductId = #{p}
     </delete>
 
     <insert id="insertCart">
-        insert into cart(cart_id, member_id, cart_product_id, cart_product_price, cart_product_file_1,
-                         cart_product_counts)
+        insert into cart(cartId, memberId, cartProductId, cartProductPrice, cartProductFile1,
+                         cartProductCounts)
         values (#{cartId}, #{memberId}, #{cartProductId}, #{cartProductPrice}, #{cartProductFile1},
                 #{cartProductCounts})
     </insert>
 
     <select id="selectFile" resultType="String">
-        select product_file_1
+        select productFile1
         from product
-        where product_name = #{n}
+        where productName = #{n}
     </select>
 
     <select id="selectPrice" resultType="Integer">
-        select product_normal_price
+        select productNormalPrice
         from product
-        where product_name = #{n}
+        where productName = #{n}
     </select>
 
     <select id="selectProductName" resultType="String">
         select product_name
-        from product
-        where product_id = #{p}
+        from productName
+        where productId = #{p}
     </select>
 </mapper>

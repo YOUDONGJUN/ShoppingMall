@@ -26,43 +26,43 @@
     <select id="selectAllNoticeList" resultMap="notice">
         select B.*
         from (select rownum rn, A.*
-              from (select * from notice order by notice_id desc) A) B
+              from (select * from notice order by noticeId desc) A) B
         where rn between #{s} and #{e}
     </select>
 
     <insert id="writeSave">
-        insert into notice(notice_id, notice_writer_id, notice_title, notice_content, notice_image_file_name)
+        insert into notice(noticeId, noticeWriterId, noticeTitle, noticeContent, noticeImageFileName)
         values (notice_seq.nextval, #{noticeWriterId}, #{noticeTitle}, #{noticeContent}, #{noticeImageFileName})
     </insert>
 
     <select id="contentView" resultMap="notice">
         select *
         from notice
-        where notice_id = #{noticeId}
+        where noticeId = #{noticeId}
     </select>
 
     <update id="noticeViews">
         update notice
-        set notice_views=notice_views + 1
-        where notice_id = #{noticeId}
+        set noticeViews=noticeViews + 1
+        where noticeId = #{noticeId}
     </update>
 
     <update id="modify">
         update notice
-        set notice_title=#{noticeTitle},
-            notice_content=#{noticeContent},
-            notice_image_file_name=#{noticeImageFileName}
-        where notice_id = #{noticeId}
+        set noticeTitle=#{noticeTitle},
+            noticeContent=#{noticeContent},
+            noticeImageFileName=#{noticeImageFileName}
+        where noticeId = #{noticeId}
     </update>
 
     <delete id="delete">
         delete
         from notice
-        where notice_id = #{noticeId}
+        where noticeId = #{noticeId}
     </delete>
 
     <insert id="addReply">
-        insert into reply(notice_writer_id, notice_title, notice_content, write_group)
+        insert into reply(noticeWriterId, noticeTitle, noticeContent, write_group)
         values (#{noticeWriterId}, #{noticeTitle}, #{noticeContent}, #{write_group})
     </insert>
 

@@ -19,26 +19,26 @@
     <select id="getUserTotalMileages" resultType="Integer">
         select count(*)
         from mileage
-        where member_idx = #{memberIdx}
+        where memberIdx = #{memberIdx}
     </select>
 
     <select id="getUserMileages" resultMap="mileage">
         select *
         from mileage
-        where member_idx = #{memberIdx}
+        where memberIdx = #{memberIdx}
     </select>
 
     <select id="getUserMileageStateList" resultType="String">
-        select mileage_status
+        select mileageStatus
         from mileage
-        where member_idx = #{memberIdx}
+        where memberIdx = #{memberIdx}
     </select>
 
     <select id="getUnusedUserMileages" resultMap="mileage">
         select *
         from mileage
-        where member_idx = #{memberIdx}
-          AND mileage_status = '미가용'
+        where memberIdx = #{memberIdx}
+          AND mileageStatus = '미가용'
     </select>
 
 </mapper>

@@ -3,6 +3,7 @@ package com.bit.order.service;
 import com.bit.member.dto.MemberDTO;
 import com.bit.mybatis.order.OrderMapper;
 import com.bit.order.dto.OrderDTO;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -15,8 +16,10 @@ import java.util.Collections;
 @Service
 public class OrderService {
 
+//    private final String NAMESPACE = "mapper.OrderMapper";
     @Autowired
     OrderMapper orderMapper;
+//    private SqlSession session;
 
     public void getUserOrdersDeliveryStates(HttpServletRequest request,
                                             Model model,

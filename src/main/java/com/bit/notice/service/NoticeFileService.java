@@ -1,6 +1,7 @@
 package com.bit.notice.service;
 
 import com.bit.message.MessageDTO;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,6 +13,8 @@ import java.util.Calendar;
 @Service
 public class NoticeFileService {
     public static final String IMAGE_REPO = "D:\\image_repo\\notice_image_repo";
+//    private final String NAMESPACE = "mapper.NoticeMapper";
+//    private SqlSession session;
 
 
     public String getMessage(int num, HttpServletRequest request) {

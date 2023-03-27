@@ -2,6 +2,7 @@ package com.bit.member.service;
 
 import com.bit.member.dto.MemberDTO;
 import com.bit.mybatis.member.MemberMapper;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,13 +16,15 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 @Service
 public class MemberService {
 
+
+//    private final String NAMESPACE = "mapper.UserMapper";
     @Autowired
     MemberMapper memberMapper;
+//    private SqlSession session;
 
     public int user_check(HttpServletRequest request, Model model, HttpSession session) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -57,36 +60,8 @@ public class MemberService {
     }
 
     public int register(MemberDTO memberDTO) {
-        memberDTO.setMemberId(memberDTO.getMemberId());
-		/*
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		//dto.setPw(encoder.encode(dto.getPw()));
-		System.out.println("비밀번호 변경 전 : "+dto.getMemberPassword());
-		String pw = encoder.encode(dto.getMemberPassword());
-		System.out.println("암호화 후 : "+pw);
-		*/
-        memberDTO.setMemberIdx(UUID.randomUUID().toString().replace("-", ""));
+        return session.insert(NAMESPACE + ".register", memberDTO);
 
-        memberDTO.setMemberPassword(memberDTO.getMemberPassword());
-        memberDTO.setMemberName(memberDTO.getMemberName());
-        memberDTO.setMemberPhone(memberDTO.getMemberPhone());
-        memberDTO.setMemberAddress(memberDTO.getMemberAddress());
-        memberDTO.setMemberAddress2(memberDTO.getMemberAddress2());
-        memberDTO.setMemberEmail(memberDTO.getMemberEmail());
-
-        memberDTO.setMemberLimitTime(new Date(System.currentTimeMillis()));
-        memberDTO.setMemberSessionId("nan");
-
-        memberDTO.setMemberRole("user");
-        Date createDate = new Date(System.currentTimeMillis());
-        memberDTO.setMemberCreateDate(createDate);
-
-        try {
-            return memberMapper.register(memberDTO);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
-        }
     }
 
     //로그인 한 회원정보 수정

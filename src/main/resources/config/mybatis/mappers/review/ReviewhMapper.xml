@@ -24,15 +24,15 @@
     <!-- readwishes.jsp -->
 
     <insert id="reviewSave">
-        insert into review(review_id,
-                           review_writer_idx,
-                           review_title,
-                           review_content,
-                           product_name,
-                           product_degree,
+        insert into review(reviewId,
+                           reviewWriterIdx,
+                           reviewTitle,
+                           reviewContent,
+                           productName,
+                           productDegree,
                            product_score,
-                           product_id,
-                           product_file_1)
+                           productScore,
+                           productFile1)
         values (#{reviewId},
                 #{reviewWriterIdx},
                 #{reviewTitle},
@@ -45,10 +45,10 @@
     </insert>
 
     <insert id="register">
-        insert into member(member_idx, member_name, member_email, member_password, member_role,
-                           member_address, member_create_date, member_mileage, member_point, member_id,
-                           member_phone,
-                           member_sessionId, member_limitTime)
+        insert into member(memberIdx, memberName, memberEmail, memberPassword, memberRole,
+                           memberAddress, memberCreateDate, member_mileage, member_point, memberId,
+                           memberPhone,
+                           memberSessionId, memberLimitTime)
         values (#{memberIdx}, #{memberName}, #{memberEmail}, #{memberPassword}, #{memberRole},
                 #{memberAddress}, #{memberCreateDate}, 0, 0, #{memberId}, #{memberPhone},
                 #{memberSessionId}, #{memberLimitTime})

@@ -16,12 +16,12 @@
 
     <!-- readwishes.jsp -->
     <insert id="insertUserCart">
-        insert into review(cart_id,
-                           member_id,
-                           cart_product_id,
-                           cart_product_counts,
-                           cart_product_price,
-                           cart_product_file_1)
+        insert into review(cartId,
+                           memberId,
+                           cartProductId,
+                           cartProductCounts,
+                           cartProductPrice,
+                           cartProductFile1)
         values (#{cartId},
                 #{memberId},
                 #{cartProductId},

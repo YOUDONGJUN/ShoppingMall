@@ -11,6 +11,7 @@ import com.bit.member.service.MemberService;
 import com.bit.mileage.service.MileageService;
 import com.bit.mybatis.product.ProductMapper;
 import com.bit.order.service.OrderService;
+import com.bit.wish.service.WishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.bit.review.service.ReviewService;
-import com.bit.wish.service.WishService;
 
 
 @Controller
@@ -76,7 +76,7 @@ public class MyPageController {
     public String readWishes(MemberDTO memberDTO,
                              HttpServletRequest request,
                              Model model,
-                             HttpSession session) {
+                             HttpSession session){
         wishService.getUserWishes(model, session);
         return "eunbin/readWishes";
     }
