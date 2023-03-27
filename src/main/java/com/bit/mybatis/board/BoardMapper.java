@@ -12,7 +12,7 @@ import java.util.List;
 public interface BoardMapper {
     public List<BoardDTO> selectAllBoardList(@Param("s") int start, @Param("e") int end);
 
-    public int writeSave(BoardDTO dto);
+    public int writeSave(BoardDTO boardDTO);
 
     public BoardDTO contentView(int writeNo);
 
@@ -20,9 +20,9 @@ public interface BoardMapper {
 
     public int delete(int writeNo);
 
-    public int modify(BoardDTO dto);
+    public int modify(BoardDTO boardDTO);
 
-    public void addReply(BoardRepDTO dto);
+    public void addReply(BoardRepDTO boardRepDTO);
 
     public List<BoardRepDTO> getRepList(int write_group);
 

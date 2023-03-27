@@ -54,7 +54,7 @@ public class MileageService {
     public void getUserTotalMileage(Model model, HttpSession session) {
         MemberDTO memberDTO = (MemberDTO) session.getAttribute("userSessionData");
         String LoginUserIdx = memberDTO.getMemberIdx();
-        int UserTotalMileageCount = mileageMapper.getUserTotalMileage(LoginUserIdx);
+        int UserTotalMileageCount = mileageMapper.getUserTotalMileages(LoginUserIdx);
         model.addAttribute("UserTotalMileageCount", UserTotalMileageCount);
         System.out.println(UserTotalMileageCount);
 

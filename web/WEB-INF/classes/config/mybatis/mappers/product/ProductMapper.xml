@@ -104,7 +104,7 @@
     <select id="selectCategoriesCount" resultType="Integer">
         select count(*)
         from product
-        where product_category = #{kat}
+        where product_category = #{category}
     </select>
 
     <!-- 모든 상품 인기도순 가져오기 -->
@@ -132,7 +132,7 @@
     </select>
 
     <!-- 선택된 카테고리 가격순 가져오기 -->
-    <select id="selectPriceAllCategoryList" resultMap="product">
+    <select id="selectPriceAllCategoriesList" resultMap="product">
         select B.*
         from (select rownum rn, A.*
               from (select * from product where product_category = #{k} order by product_normal_price asc) A) B

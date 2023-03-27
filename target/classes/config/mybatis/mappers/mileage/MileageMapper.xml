@@ -16,7 +16,7 @@
 
     <!-- readMileage.jsp -->
 
-    <select id="getUserTotalMileage" resultType="Integer">
+    <select id="getUserTotalMileages" resultType="Integer">
         select count(*)
         from mileage
         where member_idx = #{memberIdx}

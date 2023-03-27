@@ -18,17 +18,17 @@ public interface ProductMapper {
 
     public int selectProductCount(); // 상품 총 개수 가져오기
 
-    public ArrayList<ProductDTO> selectAllCategoriesList(@Param("k") String kat, @Param("s") int start, @Param("e") int end); // 선택된 카테고리 모두 가져오기
+    public ArrayList<ProductDTO> selectAllCategoriesList(@Param("c") String category, @Param("s") int start, @Param("e") int end); // 선택된 카테고리 모두 가져오기
 
-    public int selectCategoriesCount(String kat); // 선택된 카테고리 총 개수 가져오기
+    public int selectCategoriesCount(String category); // 선택된 카테고리 총 개수 가져오기
 
     public ArrayList<ProductDTO> selectRecommendAllProductList(@Param("s") int start, @Param("e") int end); // 모든 상품 인기도순 가져오기
 
-    public ArrayList<ProductDTO> selectRecommendAllCategoriesList(@Param("k") String kat, @Param("s") int start, @Param("e") int end); // 카테고리 인기도순 가져오기
+    public ArrayList<ProductDTO> selectRecommendAllCategoriesList(@Param("c") String category, @Param("s") int start, @Param("e") int end); // 카테고리 인기도순 가져오기
 
     public ArrayList<ProductDTO> selectPriceAllProductList(@Param("s") int start, @Param("e") int end); // 모든 상품 가격순 가져오기
 
-    public ArrayList<ProductDTO> selectPriceAllCategoriesList(@Param("k") String kat, @Param("s") int start, @Param("e") int end); // 카테고리 가격순 가져오기
+    public ArrayList<ProductDTO> selectPriceAllCategoriesList(@Param("c") String category, @Param("s") int start, @Param("e") int end); // 카테고리 가격순 가져오기
 
     public ArrayList<ProductDTO> selectScoreAllProductList(@Param("s") int start, @Param("e") int end);
 
@@ -40,19 +40,19 @@ public interface ProductMapper {
 
     public int selectScoreCount(@Param("p") String productId); // 평점 개수 가져오기
 
-    public int selectRelProductCount(@Param("k") String kat);
+    public int selectRelProductCount(@Param("c") String category);
 
     public String selectPostId(@Param("p") String productId); // postId 값 가져오기
 
     public void updateRecommendCounts(@Param("p") String productId); // 추천 기능
 
-    public ArrayList<QnaQuestionDTO> selectAllQnaQList(@Param("p") String postId); // 문의 리스트 출력
+    public ArrayList<QnaQuestionDTO> selectAllQnaQuestionList(@Param("p") String postId); // 문의 리스트 출력
 
     public QnaAnswerDTO selectQnaAnswerList(@Param("q") String questionId); // 답변 가져오기
 
     public void insertQnaQuestion(com.bit.qna.dto.QnaQuestionDTO qnaQuestionDTO); // 문의하기
 
-    public ArrayList<ProductDTO> selectRelativeProduct(@Param("p") String productId, @Param("k") String kat, @Param("s") int start, @Param("e") int end); // 관련 상품 가져오기
+    public ArrayList<ProductDTO> selectRelativeProduct(@Param("p") String productId, @Param("c") String category, @Param("s") int start, @Param("e") int end); // 관련 상품 가져오기
 
     public ProductPostDTO selectProductPost(@Param("p") String productId); // 상품 게시글 정보 가져오기
 

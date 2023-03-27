@@ -23,13 +23,13 @@ public interface MemberMapper {
 
     public MemberDTO info(String memberId);
 
-    public int register(MemberDTO dto);
+    public int register(MemberDTO memberDTO);
 
     public void keepLogin(Map<String, Object> map);
 
     public MemberDTO getUserSessionId(String sessionId);
 
-    public void modify(MemberDTO dto); //회원정보 수정
+    public void modify(MemberDTO memberDTO); //회원정보 수정
 
     public void delete(String userId); //회원 탈퇴
 }

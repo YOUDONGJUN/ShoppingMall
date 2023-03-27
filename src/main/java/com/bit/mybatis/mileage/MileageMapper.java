@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public interface MileageMapper {
     public ArrayList<MileageDTO> getUserMileages(String memberIdx);
 
-    public int getUserTotalMileage(String memberIdx);
+    public int getUserTotalMileages(String memberIdx);
 
     public ArrayList<String> getUserMileageStateList(String memberIdx);
 
